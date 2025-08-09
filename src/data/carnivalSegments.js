@@ -2,6 +2,53 @@
 // Updated: August 9, 2025
 
 export const carnivalSegments = {
+  workshops: [
+    {
+      id: 'prelim-math-olympiad',
+      title: 'Math Olympiad Competition',
+      type: 'Onsite',
+      date: 'August 20, 2025',
+      time: 'TBA',
+      description: 'Test your mathematical prowess in this challenging preliminary round.',
+      category: 'Academic',
+      image: '/src/assets/images/segments/24 Math Olympiad Competition.jpg',
+      registration: {
+        deadline: 'August 18, 2025',
+        fee: 'Free',
+        teamSize: 'Individual'
+      }
+    },
+    {
+      id: 'prelim-hackathon',
+      title: 'Hackathon',
+      type: 'Onsite',
+      date: 'August 21, 2025',
+      time: 'TBA',
+      description: 'Build innovative solutions in this intensive preliminary hackathon.',
+      category: 'Development',
+      image: '/src/assets/images/segments/27 Hackathon.jpg',
+      registration: {
+        deadline: 'August 19, 2025',
+        fee: 'Free',
+        teamSize: '3-4 members'
+      }
+    },
+    {
+      id: 'prelim-programming-contest',
+      title: 'Programming Contest',
+      type: 'Online',
+      date: 'August 22, 2025',
+      time: 'TBA',
+      description: 'Solve algorithmic challenges in this online preliminary contest.',
+      category: 'Programming',
+      image: '/src/assets/images/segments/28 Programming Contest.jpg',
+      registration: {
+        deadline: 'August 20, 2025',
+        fee: 'Free',
+        teamSize: 'Individual'
+      }
+    }
+  ],
   prelims: [
     {
       id: 'prelim-math-olympiad',
