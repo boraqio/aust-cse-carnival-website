@@ -26,7 +26,7 @@ const carnivalData = {
     description: "The very first AUST CSE Carnival that started our amazing tradition of innovation and technology celebration.",
     year: "2021",
     gradient: "linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-accent-dark) 100%)",
-    accentColor: "#03624c",
+    accentColor: "#403168",
     icon: "rocket",
     position: "left",
     images: importCarnivalImages("1", 18),
@@ -52,7 +52,7 @@ const carnivalData = {
     description: "A quantum leap in carnival excellence with cutting-edge competitions and industry partnerships.",
     year: "2023",
     gradient: "linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary-dark) 100%)",
-    accentColor: "#042222",
+    accentColor: "#325666",
     icon: "star",
     position: "left",
     images: importCarnivalImages("3", 8),
@@ -65,7 +65,7 @@ const carnivalData = {
     description: "The fourth iteration brought revolutionary changes with international participation and advanced tech demos.",
     year: "2024",
     gradient: "linear-gradient(135deg, var(--color-accent-bright) 0%, var(--color-accent-dark) 100%)",
-    accentColor: "#2ec095",
+    accentColor: "#0b0146",
     icon: "tent",
     position: "right",
     images: importCarnivalImages("4", 10),
@@ -78,7 +78,7 @@ const carnivalData = {
     description: "Our most ambitious carnival yet, showcasing the latest in AI, machine learning, and emerging technologies.",
     year: "2025",
     gradient: "linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-accent-bright) 100%)",
-    accentColor: "#2ec095",
+    accentColor: "#420605",
     icon: "sparkles",
     position: "left",
     images: importCarnivalImages("5", 12),
@@ -330,7 +330,11 @@ const Gallery = () => {
         {/* Fixed carnival card positioning */}
         <div
           className={styles.carnivalCard}
-          style={{ background: carnival.gradient }}
+          style={{
+            background: `linear-gradient(135deg, ${carnival.accentColor}20 0%, ${carnival.accentColor}40 50%, ${carnival.accentColor}60 100%)`,
+            '--carnival-accent-color': carnival.accentColor,
+            '--carnival-accent-color-shadow': `${carnival.accentColor}50` // Add 50 for 50% opacity
+          }}
           onClick={() => openGallery(version)}
         >
           <div className={styles.cardGlow} style={{ boxShadow: `0 0 50px ${carnival.accentColor}40` }}></div>
@@ -582,16 +586,10 @@ const Gallery = () => {
               <div className={styles.currentIcon}>
                 <Icon type="tent" size="xxlarge" />
               </div>
-              <h2 className={styles.currentTitle}>AUST CSE Carnival 5.0</h2>
+              <h2 className={styles.currentTitle}>AUST CSE Carnival 6.0</h2>
               <p className={styles.currentSubtitle}>
                 The latest and most spectacular edition of our carnival journey, featuring cutting-edge technology and unforgettable experiences.
               </p>
-              <button
-                className={styles.exploreButton}
-                onClick={() => openGallery('5.0')}
-              >
-                Explore Latest Gallery
-              </button>
             </div>
           </div>
         </section>

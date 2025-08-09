@@ -257,7 +257,7 @@
   max-width: 500px; /* Add max-width to prevent cards from being too wide */
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  border: 2px solid rgba(46, 192, 149, 0.2);
+  border: 2px solid var(--carnival-accent-color, rgba(46, 192, 149, 0.2));
   backdrop-filter: blur(10px);
   overflow: hidden;
   z-index: 10; /* Higher z-index to stay above timeline */
@@ -282,8 +282,8 @@
 
 .carnivalCard:hover {
   transform: translateY(-12px) scale(1.02);
-  border-color: var(--color-accent-bright);
-  box-shadow: 0 25px 80px rgba(46, 192, 149, 0.3);
+  border-color: var(--carnival-accent-color, var(--color-accent-bright));
+  box-shadow: 0 25px 80px var(--carnival-accent-color-shadow, rgba(46, 192, 149, 0.3));
 }
 
 .cardGlow {
@@ -315,15 +315,19 @@
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   backdrop-filter: blur(10px);
+  color: var(--color-text-light); /* Changed to white */
 }
 
 .cardYear {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--carnival-accent-color, rgba(46, 192, 149, 0.15)); /* Use carnival accent color with opacity */
+  color: var(--carnival-accent-color, var(--color-accent-bright)); /* Use carnival accent color */
   padding: 6px 12px;
   border-radius: 12px;
   font-size: 0.9rem;
   font-weight: 600;
   backdrop-filter: blur(10px);
+  border: 1px solid var(--carnival-accent-color, rgba(46, 192, 149, 0.3)); /* Use carnival accent color */
+  opacity: 0.2; /* Make background very subtle */
 }
 
 .cardContent {
@@ -355,7 +359,7 @@
 /* Enhanced Stats Section */
 .carnivalStats {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Changed to 2 columns for better fit */
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   margin: 25px 0;
   padding: 20px;
@@ -373,7 +377,7 @@
   display: block;
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--color-accent-bright);
+  color: var(--color-text-light); /* Changed to white */
   line-height: 1;
 }
 
@@ -395,13 +399,13 @@
 }
 
 .highlight {
-  background: rgba(46, 192, 149, 0.15);
-  color: var(--color-accent-bright);
+  background: rgba(255, 255, 255, 0.1); /* Changed to white background with transparency */
+  color: var(--color-text-light); /* Changed to white text */
   padding: 4px 10px;
   border-radius: 15px;
   font-size: 0.75rem;
   font-weight: 500;
-  border: 1px solid rgba(46, 192, 149, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Changed to white border */
   backdrop-filter: blur(5px);
 }
 
@@ -409,7 +413,7 @@
 .viewGalleryButton {
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  border: 2px solid var(--color-accent-bright);
+  border: 2px solid var(--color-text-light); /* Changed to white border */
   color: var(--color-text-light);
   padding: 16px 32px;
   border-radius: 50px;
@@ -427,27 +431,10 @@
 }
 
 .viewGalleryButton:hover {
-  background: var(--color-accent-bright);
-  color: var(--color-primary-dark);
+  background: var(--color-text-light); /* White background on hover */
+  color: var(--color-primary-dark); /* Dark text on white background */
   transform: scale(1.05);
-  box-shadow: 0 8px 30px rgba(46, 192, 149, 0.4);
-}
-
-.buttonRipple {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
-}
-
-.viewGalleryButton:active .buttonRipple {
-  width: 200px;
-  height: 200px;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3); /* White shadow */
 }
 
 /* Enhanced Gallery Modal */
