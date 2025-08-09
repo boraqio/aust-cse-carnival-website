@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiArrowLeft, FiCalendar, FiClock, FiUsers, FiMapPin, FiDollarSign, FiInfo, FiAward, FiExternalLink } from 'react-icons/fi';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
-import Icon from '../../components/common/Icon';
+import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { getSegmentById, getAllSegments } from '../../data/carnivalSegments';
 import styles from './SegmentDetails.module.css';
 
@@ -12,6 +14,7 @@ const SegmentDetails = () => {
   const [segment, setSegment] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useEffect(() => {
     const foundSegment = getSegmentById(id);
@@ -25,9 +28,12 @@ const SegmentDetails = () => {
 
   if (loading) {
     return (
-      <div className={styles.loading}>
-        <div className={styles.loadingSpinner}></div>
-        <p>Loading event details...</p>
+      <div className={styles.loadingContainer}>
+        <Header />
+        <div className={styles.loadingContent}>
+          <LoadingSpinner />
+          <p>Loading event details...</p>
+        </div>
       </div>
     );
   }
@@ -53,460 +59,325 @@ const SegmentDetails = () => {
       });
       return `${start} - ${end}`;
     }
-    return new Date(dateString).toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+
+    try {
+      return new Date(dateString).toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch (error) {
+      return dateString;
+    }
   };
 
-  const getEventRules = (eventId) => {
-    const commonRules = [
-      "Participants must register before the deadline",
-      "Valid student ID required for verification",
-      "Late submissions will not be accepted",
-      "Plagiarism will result in immediate disqualification"
-    ];
+  const tabs = [
+    { id: 'overview', label: 'Overview', icon: FiInfo },
+    { id: 'registration', label: 'Registration', icon: FiUsers },
+    { id: 'rules', label: 'Rules & Guidelines', icon: FiAward }
+  ];
 
-    const specificRules = {
-      'uiux-competition': [
-        "Design must be original and created during the competition",
-        "Use any design tool (Figma, Adobe XD, Sketch, etc.)",
-        "Submit wireframes, mockups, and prototype",
-        "Present your design solution in 5 minutes"
-      ],
-      'hackathon': [
-        "Teams of 3-4 members maximum",
-        "Use any programming language or framework",
-        "Code must be written during the event",
-        "Working demo required for final presentation"
-      ],
-      'programming-contest': [
-        "Individual participation only",
-        "Use C++, Java, Python, or JavaScript",
-        "Standard competitive programming rules apply",
-        "No external libraries allowed"
-      ],
-      'math-olympiad': [
-        "Individual participation only",
-        "No calculators or external aids allowed",
-        "Show all working steps clearly",
-        "Time limit strictly enforced"
-      ],
-      'capture-the-flag': [
-        "Teams of 2-4 members",
-        "No attacking competition infrastructure",
-        "Flag sharing between teams prohibited",
-        "Document your solution approach"
-      ],
-      'quiz-competition': [
-        "Teams of 3-4 members",
-        "Multiple rounds with increasing difficulty",
-        "No mobile phones or internet access",
-        "Answers must be submitted within time limit"
-      ],
-      'chess-competition': [
-        "Individual participation only",
-        "Standard FIDE rules apply",
-        "Time control: 15 minutes per player",
-        "No external assistance allowed"
-      ],
-      'esports-tournaments': [
-        "Teams vary by game type",
-        "Stable internet connection required",
-        "Use designated game versions only",
-        "Fair play and sportsmanship expected"
-      ]
-    };
-
-    return [...commonRules, ...(specificRules[eventId] || [])];
+  const pageVariants = {
+    initial: { opacity: 0, y: 20 },
+    in: { opacity: 1, y: 0 },
+    out: { opacity: 0, y: -20 }
   };
 
-  const getEventPrizes = (eventId) => {
-    const basePrizes = {
-      first: "Certificate + Trophy + Cash Prize",
-      second: "Certificate + Medal + Cash Prize",
-      third: "Certificate + Medal"
-    };
-
-    const specialPrizes = {
-      'hackathon': {
-        ...basePrizes,
-        special: ["Best Innovation Award", "Best UI/UX Design", "Best Technical Implementation"]
-      },
-      'uiux-competition': {
-        ...basePrizes,
-        special: ["Most Creative Design", "Best User Experience"]
-      },
-      'programming-contest': {
-        ...basePrizes,
-        special: ["Fastest Solution Award"]
-      }
-    };
-
-    return specialPrizes[eventId] || basePrizes;
+  const pageTransition = {
+    type: 'tween',
+    ease: 'anticipate',
+    duration: 0.5
   };
-
-  const getEventTimeline = (eventId) => {
-    const baseTimeline = [
-      { time: "Registration Opens", desc: "2 weeks before event", status: "completed" },
-      { time: "Registration Deadline", desc: segment.registration.deadline, status: "upcoming" },
-      { time: "Event Day", desc: segment.date, status: "upcoming" },
-      { time: "Results Announcement", desc: "Same day", status: "upcoming" }
-    ];
-
-    const specificTimelines = {
-      'hackathon': [
-        ...baseTimeline,
-        { time: "Team Formation", desc: "1 hour before start", status: "upcoming" },
-        { time: "Problem Statement Release", desc: "Event start", status: "upcoming" },
-        { time: "Submission Deadline", desc: "24 hours after start", status: "upcoming" },
-        { time: "Presentation Round", desc: "After submission", status: "upcoming" }
-      ]
-    };
-
-    return specificTimelines[eventId] || baseTimeline;
-  };
-
-  const getFAQ = (eventId) => {
-    const commonFAQ = [
-      {
-        question: "How do I register for this event?",
-        answer: "Registration will be available through our official website. Follow the registration link and fill out the required information."
-      },
-      {
-        question: "Is there a registration fee?",
-        answer: `Registration fee: ${segment.registration.fee}. Payment details will be provided during registration.`
-      },
-      {
-        question: "Can I participate if I'm not from AUST?",
-        answer: "Yes! This event is open to students from all universities. Valid student ID is required for verification."
-      }
-    ];
-
-    const specificFAQ = {
-      'hackathon': [
-        {
-          question: "Can I participate alone?",
-          answer: "Teams of 3-4 members are required. You can find team members during the team formation session."
-        },
-        {
-          question: "What should I bring?",
-          answer: "Bring your laptop, charger, and any development tools you prefer. WiFi and refreshments will be provided."
-        }
-      ],
-      'programming-contest': [
-        {
-          question: "What programming languages are allowed?",
-          answer: "C++, Java, Python, and JavaScript are supported. Choose the one you're most comfortable with."
-        },
-        {
-          question: "Can I use my own IDE?",
-          answer: "Yes, you can use any IDE or text editor you prefer, but no external libraries or plugins are allowed."
-        }
-      ]
-    };
-
-    return [...commonFAQ, ...(specificFAQ[eventId] || [])];
-  };
-
-  const relatedEvents = getAllSegments().filter(event =>
-    event.id !== segment.id && event.category === segment.category
-  ).slice(0, 3);
 
   return (
     <>
       <Helmet>
-        <title>{segment.title} - AUST CSE Carnival 2025</title>
+        <title>{segment.title} | AUST CSE Carnival</title>
         <meta name="description" content={segment.description} />
-        <meta name="keywords" content={`${segment.title}, AUST, CSE Carnival, ${segment.category}, ${segment.type}`} />
+        <meta name="keywords" content={`AUST, CSE, Carnival, ${segment.title}, ${segment.category}, ${segment.type}`} />
       </Helmet>
 
-      <div className={styles.segmentDetails}>
-        <Header />
+      <Header />
 
+      <motion.main
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+        className={styles.main}
+      >
         {/* Hero Section */}
-        <section className={styles.hero}>
-          <div className={styles.heroImage}>
-            <img src={segment.image} alt={segment.title} />
-            <div className={styles.heroOverlay}>
-              <div className={styles.container}>
-                <div className={styles.heroContent}>
-                  <div className={styles.heroMeta}>
-                    <span className={styles.eventType}>{segment.type}</span>
-                    <span className={styles.eventCategory}>{segment.category}</span>
+        <section className={styles.heroSection}>
+          <div className={styles.heroBackground}>
+            <img
+              src={segment.image}
+              alt={segment.title}
+              className={`${styles.heroImage} ${isImageLoaded ? styles.imageLoaded : ''}`}
+              onLoad={() => setIsImageLoaded(true)}
+            />
+            <div className={styles.heroOverlay}></div>
+          </div>
+
+          <div className={styles.heroContent}>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className={styles.breadcrumb}
+            >
+              <Link to="/event" className={styles.backLink}>
+                <FiArrowLeft />
+                <span>Back to Events</span>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className={styles.heroInfo}
+            >
+              <div className={styles.eventBadge}>
+                <span className={`${styles.typeBadge} ${styles[segment.type.toLowerCase()]}`}>
+                  {segment.type}
+                </span>
+                <span className={styles.categoryBadge}>
+                  {segment.category}
+                </span>
+              </div>
+
+              <h1 className={styles.eventTitle}>{segment.title}</h1>
+              <p className={styles.eventDescription}>{segment.description}</p>
+
+              <div className={styles.quickInfo}>
+                <div className={styles.infoItem}>
+                  <FiCalendar className={styles.infoIcon} />
+                  <span>{formatDate(segment.date)}</span>
+                </div>
+                {segment.time && segment.time !== 'TBA' && (
+                  <div className={styles.infoItem}>
+                    <FiClock className={styles.infoIcon} />
+                    <span>{segment.time}</span>
                   </div>
-                  <h1 className={styles.heroTitle}>{segment.title}</h1>
-                  <p className={styles.heroDescription}>{segment.description}</p>
-                  <div className={styles.heroActions}>
-                    <div className={styles.eventDate}>
-                      <Icon type="calendar" />
-                      <strong>{formatDate(segment.date)}</strong>
-                    </div>
-                    <Link to="/contact" className={styles.registerBtn}>
-                      Register Now
-                    </Link>
-                  </div>
+                )}
+                <div className={styles.infoItem}>
+                  <FiMapPin className={styles.infoIcon} />
+                  <span>{segment.type}</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Navigation Tabs */}
-        <section className={styles.tabNavigation}>
+        {/* Content Section */}
+        <section className={styles.contentSection}>
           <div className={styles.container}>
-            <div className={styles.tabs}>
-              {[
-                { id: 'overview', label: 'Overview' },
-                { id: 'rules', label: 'Rules & Guidelines' },
-                { id: 'timeline', label: 'Timeline' },
-                { id: 'prizes', label: 'Prizes' },
-                { id: 'faq', label: 'FAQ' }
-              ].map(tab => (
-                <button
-                  key={tab.id}
-                  className={`${styles.tab} ${activeTab === tab.id ? styles.activeTab : ''}`}
-                  onClick={() => setActiveTab(tab.id)}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
+            {/* Tab Navigation */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className={styles.tabNavigation}
+            >
+              {tabs.map((tab) => {
+                const IconComponent = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    className={`${styles.tabButton} ${activeTab === tab.id ? styles.activeTab : ''}`}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    <IconComponent className={styles.tabIcon} />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </motion.div>
 
-        {/* Content Sections */}
-        <section className={styles.content}>
-          <div className={styles.container}>
-            <div className={styles.contentGrid}>
-
-              {/* Main Content */}
-              <div className={styles.mainContent}>
-
-                {/* Overview Tab */}
+            {/* Tab Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className={styles.tabContent}
+              >
                 {activeTab === 'overview' && (
-                  <div className={styles.tabContent}>
-                    <h2>Event Overview</h2>
-                    <div className={styles.overviewGrid}>
-                      <div className={styles.overviewCard}>
-                        <Icon type="calendar" />
-                        <h3>Event Date</h3>
-                        <p>{formatDate(segment.date)}</p>
-                      </div>
-                      <div className={styles.overviewCard}>
-                        <Icon type="graduation" />
-                        <h3>Category</h3>
-                        <p>{segment.category}</p>
-                      </div>
-                      <div className={styles.overviewCard}>
-                        <Icon type="location" />
-                        <h3>Format</h3>
-                        <p>{segment.type}</p>
-                      </div>
-                      <div className={styles.overviewCard}>
-                        <Icon type="graduation" />
-                        <h3>Team Size</h3>
-                        <p>{segment.registration.teamSize}</p>
-                      </div>
-                    </div>
-
-                    <div className={styles.description}>
-                      <h3>About This Event</h3>
-                      <p>{segment.description}</p>
-                      <p>This event is designed to challenge participants and showcase their skills in {segment.category.toLowerCase()}. Whether you're a beginner or an expert, this competition offers a great opportunity to learn, compete, and network with like-minded individuals.</p>
-                    </div>
-
-                    <div className={styles.objectives}>
-                      <h3>Event Objectives</h3>
-                      <ul>
-                        <li>Foster innovation and creative thinking</li>
-                        <li>Encourage collaborative problem-solving</li>
-                        <li>Provide networking opportunities</li>
-                        <li>Recognize and reward excellence</li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-
-                {/* Rules Tab */}
-                {activeTab === 'rules' && (
-                  <div className={styles.tabContent}>
-                    <h2>Rules & Guidelines</h2>
-                    <div className={styles.rulesSection}>
-                      <h3>General Rules</h3>
-                      <ul className={styles.rulesList}>
-                        {getEventRules(segment.id).map((rule, index) => (
-                          <li key={index}>{rule}</li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className={styles.eligibility}>
-                      <h3>Eligibility Criteria</h3>
-                      <ul>
-                        <li>Must be a current university student</li>
-                        <li>Valid student ID required</li>
-                        <li>Team size: {segment.registration.teamSize}</li>
-                        <li>Registration deadline: {segment.registration.deadline}</li>
-                      </ul>
-                    </div>
-
-                    <div className={styles.submission}>
-                      <h3>Submission Guidelines</h3>
-                      <ul>
-                        <li>Submit before the specified deadline</li>
-                        <li>Include all required documentation</li>
-                        <li>Follow naming conventions</li>
-                        <li>Ensure file formats are supported</li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-
-                {/* Timeline Tab */}
-                {activeTab === 'timeline' && (
-                  <div className={styles.tabContent}>
-                    <h2>Event Timeline</h2>
-                    <div className={styles.timeline}>
-                      {getEventTimeline(segment.id).map((item, index) => (
-                        <div key={index} className={`${styles.timelineItem} ${styles[item.status]}`}>
-                          <div className={styles.timelineMarker}></div>
-                          <div className={styles.timelineContent}>
-                            <h4>{item.time}</h4>
-                            <p>{item.desc}</p>
+                  <div className={styles.overviewContent}>
+                    <div className={styles.detailsGrid}>
+                      <div className={styles.detailsCard}>
+                        <h3>Event Details</h3>
+                        <div className={styles.detailsList}>
+                          <div className={styles.detailItem}>
+                            <FiCalendar className={styles.detailIcon} />
+                            <div>
+                              <label>Date</label>
+                              <span>{formatDate(segment.date)}</span>
+                            </div>
+                          </div>
+                          {segment.time && segment.time !== 'TBA' && (
+                            <div className={styles.detailItem}>
+                              <FiClock className={styles.detailIcon} />
+                              <div>
+                                <label>Time</label>
+                                <span>{segment.time}</span>
+                              </div>
+                            </div>
+                          )}
+                          <div className={styles.detailItem}>
+                            <FiMapPin className={styles.detailIcon} />
+                            <div>
+                              <label>Type</label>
+                              <span>{segment.type}</span>
+                            </div>
+                          </div>
+                          <div className={styles.detailItem}>
+                            <FiAward className={styles.detailIcon} />
+                            <div>
+                              <label>Category</label>
+                              <span>{segment.category}</span>
+                            </div>
                           </div>
                         </div>
-                      ))}
+                      </div>
+
+                      <div className={styles.descriptionCard}>
+                        <h3>About This Event</h3>
+                        <p>{segment.description}</p>
+                        {segment.longDescription && (
+                          <p>{segment.longDescription}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 )}
 
-                {/* Prizes Tab */}
-                {activeTab === 'prizes' && (
-                  <div className={styles.tabContent}>
-                    <h2>Prizes & Recognition</h2>
-                    <div className={styles.prizesGrid}>
-                      <div className={styles.prizeCard}>
-                        <div className={styles.prizeIcon}>🥇</div>
-                        <h3>1st Place</h3>
-                        <p>{getEventPrizes(segment.id).first}</p>
-                      </div>
-                      <div className={styles.prizeCard}>
-                        <div className={styles.prizeIcon}>🥈</div>
-                        <h3>2nd Place</h3>
-                        <p>{getEventPrizes(segment.id).second}</p>
-                      </div>
-                      <div className={styles.prizeCard}>
-                        <div className={styles.prizeIcon}>🥉</div>
-                        <h3>3rd Place</h3>
-                        <p>{getEventPrizes(segment.id).third}</p>
-                      </div>
-                    </div>
-
-                    {getEventPrizes(segment.id).special && (
-                      <div className={styles.specialPrizes}>
-                        <h3>Special Awards</h3>
-                        <ul>
-                          {getEventPrizes(segment.id).special.map((prize, index) => (
-                            <li key={index}>{prize}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* FAQ Tab */}
-                {activeTab === 'faq' && (
-                  <div className={styles.tabContent}>
-                    <h2>Frequently Asked Questions</h2>
-                    <div className={styles.faqList}>
-                      {getFAQ(segment.id).map((faq, index) => (
-                        <div key={index} className={styles.faqItem}>
-                          <h4>{faq.question}</h4>
-                          <p>{faq.answer}</p>
+                {activeTab === 'registration' && (
+                  <div className={styles.registrationContent}>
+                    <div className={styles.registrationGrid}>
+                      <div className={styles.registrationCard}>
+                        <h3>Registration Information</h3>
+                        <div className={styles.registrationDetails}>
+                          <div className={styles.regItem}>
+                            <FiCalendar className={styles.regIcon} />
+                            <div>
+                              <label>Registration Deadline</label>
+                              <span>{segment.registration?.deadline || 'TBA'}</span>
+                            </div>
+                          </div>
+                          <div className={styles.regItem}>
+                            <FiDollarSign className={styles.regIcon} />
+                            <div>
+                              <label>Registration Fee</label>
+                              <span>{segment.registration?.fee || 'TBA'}</span>
+                            </div>
+                          </div>
+                          <div className={styles.regItem}>
+                            <FiUsers className={styles.regIcon} />
+                            <div>
+                              <label>Team Size</label>
+                              <span>{segment.registration?.teamSize || 'Individual'}</span>
+                            </div>
+                          </div>
                         </div>
-                      ))}
-                    </div>
+                      </div>
 
-                    <div className={styles.contactInfo}>
-                      <h3>Still Have Questions?</h3>
-                      <p>Feel free to reach out to our organizing team for any additional information.</p>
-                      <Link to="/contact" className={styles.contactBtn}>Contact Us</Link>
+                      <div className={styles.actionCard}>
+                        <h3>Ready to Participate?</h3>
+                        <p>Register now to secure your spot in this exciting event!</p>
+                        <button className={styles.registerButton}>
+                          <FiExternalLink />
+                          <span>Register Now</span>
+                        </button>
+                        <p className={styles.registrationNote}>
+                          Registration opens soon. Stay tuned for updates!
+                        </p>
+                      </div>
                     </div>
                   </div>
                 )}
-              </div>
 
-              {/* Sidebar */}
-              <div className={styles.sidebar}>
-                <div className={styles.registrationCard}>
-                  <h3>Registration Details</h3>
-                  <div className={styles.regDetails}>
-                    <div className={styles.regItem}>
-                      <Icon type="graduation" />
-                      <div>
-                        <strong>Team Size</strong>
-                        <span>{segment.registration.teamSize}</span>
-                      </div>
-                    </div>
-                    <div className={styles.regItem}>
-                      <Icon type="calendar" />
-                      <div>
-                        <strong>Deadline</strong>
-                        <span>{new Date(segment.registration.deadline).toLocaleDateString('en-US', {
-                          month: 'long',
-                          day: 'numeric',
-                          year: 'numeric'
-                        })}</span>
-                      </div>
-                    </div>
-                    <div className={styles.regItem}>
-                      <Icon type="web" />
-                      <div>
-                        <strong>Fee</strong>
-                        <span>{segment.registration.fee}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Link to="/contact" className={styles.registerButton}>
-                    Register Now
-                  </Link>
-                </div>
-
-                {relatedEvents.length > 0 && (
-                  <div className={styles.relatedEvents}>
-                    <h3>Related Events</h3>
-                    {relatedEvents.map(event => (
-                      <Link key={event.id} to={`/segment/${event.id}`} className={styles.relatedEvent}>
-                        <img src={event.image} alt={event.title} />
-                        <div>
-                          <h4>{event.title}</h4>
-                          <p>{event.date}</p>
+                {activeTab === 'rules' && (
+                  <div className={styles.rulesContent}>
+                    <div className={styles.rulesCard}>
+                      <h3>Rules & Guidelines</h3>
+                      <div className={styles.rulesList}>
+                        <div className={styles.ruleItem}>
+                          <h4>General Rules</h4>
+                          <ul>
+                            <li>All participants must be registered before the deadline</li>
+                            <li>Valid student ID is required for verification</li>
+                            <li>Participants must follow the code of conduct</li>
+                            <li>Late submissions will not be accepted</li>
+                          </ul>
                         </div>
-                      </Link>
-                    ))}
+                        <div className={styles.ruleItem}>
+                          <h4>Event-Specific Guidelines</h4>
+                          <ul>
+                            <li>Team size: {segment.registration?.teamSize || 'Individual'}</li>
+                            <li>Event type: {segment.type}</li>
+                            <li>Category: {segment.category}</li>
+                            <li>More details will be provided upon registration</li>
+                          </ul>
+                        </div>
+                        <div className={styles.ruleItem}>
+                          <h4>Judging Criteria</h4>
+                          <ul>
+                            <li>Technical excellence and innovation</li>
+                            <li>Problem-solving approach</li>
+                            <li>Presentation quality</li>
+                            <li>Overall impact and feasibility</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
+              </motion.div>
+            </AnimatePresence>
 
-                <div className={styles.shareSection}>
-                  <h3>Share This Event</h3>
-                  <div className={styles.shareButtons}>
-                    <button className={styles.shareBtn}>Facebook</button>
-                    <button className={styles.shareBtn}>Twitter</button>
-                    <button className={styles.shareBtn}>LinkedIn</button>
-                    <button className={styles.shareBtn}>Copy Link</button>
-                  </div>
-                </div>
+            {/* Related Events */}
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className={styles.relatedEvents}
+            >
+              <h3>Other Events You Might Like</h3>
+              <div className={styles.relatedGrid}>
+                {getAllSegments()
+                  .filter(relatedSegment => relatedSegment.id !== segment.id)
+                  .slice(0, 3)
+                  .map((relatedSegment) => (
+                    <Link
+                      key={relatedSegment.id}
+                      to={`/segment/${relatedSegment.id}`}
+                      className={styles.relatedCard}
+                    >
+                      <div className={styles.relatedImage}>
+                        <img src={relatedSegment.image} alt={relatedSegment.title} />
+                        <div className={styles.relatedOverlay}>
+                          <FiExternalLink className={styles.relatedIcon} />
+                        </div>
+                      </div>
+                      <div className={styles.relatedContent}>
+                        <span className={styles.relatedType}>{relatedSegment.type}</span>
+                        <h4>{relatedSegment.title}</h4>
+                        <p>{relatedSegment.description}</p>
+                      </div>
+                    </Link>
+                  ))}
               </div>
-            </div>
+            </motion.section>
           </div>
         </section>
+      </motion.main>
 
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 };
