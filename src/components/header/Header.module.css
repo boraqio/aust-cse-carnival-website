@@ -133,13 +133,26 @@
   border: none;
   color: var(--color-text-light);
   cursor: pointer;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-lg); /* Increased padding for larger click area */
   border-radius: var(--radius-sm);
   transition: all var(--transition-base);
+  min-width: 48px; /* Ensure minimum touch target size */
+  min-height: 48px; /* Ensure minimum touch target size */
+  align-items: center;
+  justify-content: center;
+  /* Add a subtle background to visualize the clickable area */
+  position: relative;
 }
 
 .mobileMenuToggle:hover {
   background: var(--color-secondary-dark);
+}
+
+/* Ensure the hamburger icon itself is properly sized */
+.mobileMenuToggle svg {
+  width: 24px;
+  height: 24px;
+  pointer-events: none; /* Prevent the icon from interfering with clicks */
 }
 
 /* Mobile Menu */
@@ -211,7 +224,7 @@
   }
 
   .mobileMenuToggle {
-    display: block;
+    display: flex; /* Changed to flex to enable proper centering */
   }
 
   .nav {
@@ -219,8 +232,8 @@
   }
 
   .logo {
-    width: 44px;
-    height: 44px;
+    height: 36px; /* Increased from 44px to 60px for better visibility on mobile */
+    width: auto; /* Let width adjust proportionally */
   }
 
   .logoTitle {
