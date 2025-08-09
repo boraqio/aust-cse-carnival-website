@@ -1,13 +1,49 @@
-/* Contact Page Styles */
-.contactPage {
+/* Contact Page Styles - Clean & Fully Responsive */
+.contact {
   min-height: 100vh;
-  background-color: var(--color-primary-dark);
+  background: var(--color-primary-dark);
   color: var(--color-text-light);
+  font-family: var(--font-primary);
 }
 
-.main {
-  padding-top: 80px; /* Account for fixed header */
-  padding-bottom: 60px;
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary-dark) 50%, var(--color-accent-dark) 100%);
+  padding: 120px 0 80px;
+  text-align: center;
+  position: relative;
+}
+
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.heroContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--color-text-light), var(--color-accent-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: var(--color-text-gray);
+  line-height: 1.6;
+}
+
+/* Main Content */
+.mainContent {
+  padding: 80px 0;
 }
 
 .container {
@@ -16,389 +52,297 @@
   padding: 0 20px;
 }
 
-/* Contact Section */
-.contactSection {
-  padding: 80px 0;
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
 }
 
-.formContainer {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: var(--color-secondary-dark);
+/* Form Section */
+.formSection, .infoSection {
+  background: var(--color-secondary-dark);
   border-radius: 16px;
-  padding: 48px;
-  box-shadow: 0 20px 60px rgba(2, 26, 26, 0.4);
-  border: 1px solid rgba(3, 98, 76, 0.2);
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(46, 192, 149, 0.1);
 }
 
-/* Form Header */
-.formHeader {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.title {
-  font-size: 2.5rem;
+.sectionTitle {
+  font-size: clamp(1.8rem, 3vw, 2.25rem);
   font-weight: 700;
-  margin-bottom: 16px;
   color: var(--color-text-light);
-  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
-.subtitle {
-  font-size: 1.125rem;
+.sectionSubtitle {
   color: var(--color-text-gray);
+  font-size: 1.1rem;
   line-height: 1.6;
-  margin: 0;
+  margin-bottom: 2rem;
 }
 
-/* Status Messages */
-.statusMessage {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  border-radius: 8px;
-  margin-bottom: 24px;
-  font-weight: 500;
-}
-
-.statusMessage.success {
-  background-color: rgba(46, 192, 149, 0.1);
-  border: 1px solid var(--color-accent-bright);
-  color: var(--color-accent-bright);
-}
-
-.statusMessage.error {
-  background-color: rgba(239, 68, 68, 0.1);
-  border: 1px solid #ef4444;
-  color: #ef4444;
-}
-
-.successIcon,
-.errorIcon {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.successIcon {
-  background-color: var(--color-accent-bright);
-  color: var(--color-primary-dark);
-}
-
-.errorIcon {
-  background-color: #ef4444;
-  color: white;
-}
-
-.statusMessage p {
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* Form Styles */
 .contactForm {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.nameRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.inputGroup {
+.formGroup {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .label {
-  font-size: 0.875rem;
-  font-weight: 500;
   color: var(--color-text-light);
-  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-.input,
-.textarea {
-  width: 100%;
-  padding: 12px 16px;
-  border: 2px solid var(--color-accent-dark);
+.input, .select, .textarea {
+  background: var(--color-primary-dark);
+  border: 2px solid rgba(46, 192, 149, 0.2);
   border-radius: 8px;
-  background-color: var(--color-primary-dark);
+  padding: 14px 16px;
   color: var(--color-text-light);
   font-size: 1rem;
-  line-height: 1.5;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-}
-
-.input:focus,
-.textarea:focus {
-  outline: none;
-  border-color: var(--color-accent-bright);
-  box-shadow: 0 0 0 3px rgba(46, 192, 149, 0.15);
-}
-
-.input::placeholder,
-.textarea::placeholder {
-  color: var(--color-text-gray);
-  opacity: 0.7;
-}
-
-.inputError {
-  border-color: #ef4444 !important;
-}
-
-.inputError:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
-}
-
-/* Phone Input */
-.phoneInput {
-  display: flex;
-  gap: 2px;
-}
-
-.countryCode {
-  padding: 12px 16px;
-  border: 2px solid var(--color-accent-dark);
-  border-radius: 8px 0 0 8px;
-  background-color: var(--color-accent-dark);
-  color: var(--color-text-light);
-  font-size: 1rem;
-  width: 80px;
-  cursor: not-allowed;
-}
-
-.phoneNumber {
-  border-radius: 0 8px 8px 0;
-  flex: 1;
-}
-
-/* Textarea */
-.textarea {
-  resize: vertical;
-  min-height: 120px;
+  transition: all 0.3s ease;
   font-family: inherit;
 }
 
-.charCount {
-  text-align: right;
-  font-size: 0.75rem;
-  color: var(--color-text-gray);
-  margin-top: -4px;
-}
-
-/* Checkbox */
-.checkboxGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.checkboxLabel {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--color-text-gray);
-}
-
-.checkbox {
-  display: none;
-}
-
-.checkmark {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-accent-dark);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.checkbox:checked + .checkmark {
-  background-color: var(--color-accent-bright);
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
   border-color: var(--color-accent-bright);
+  box-shadow: 0 0 0 3px rgba(46, 192, 149, 0.1);
 }
 
-.checkbox:checked + .checkmark::after {
-  content: '✓';
-  color: var(--color-primary-dark);
-  font-weight: bold;
-  font-size: 12px;
+.input::placeholder, .textarea::placeholder {
+  color: rgba(224, 224, 224, 0.6);
 }
 
-.privacyLink {
-  color: var(--color-accent-bright);
-  text-decoration: underline;
-  transition: color 0.2s ease;
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
 }
 
-.privacyLink:hover {
-  color: #26a69a;
-}
-
-/* Error Text */
-.errorText {
-  color: #ef4444;
-  font-size: 0.75rem;
-  margin-top: 4px;
-  display: block;
-}
-
-/* Submit Button */
-.submitButton {
-  width: 100%;
-  padding: 16px 24px;
-  background: var(--gradient-primary);
+.submitBtn {
+  background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent-bright));
   color: var(--color-text-light);
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  padding: 16px 32px;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(46, 192, 149, 0.3);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Contact Info */
+.contactInfo {
+  margin: 2rem 0;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 2rem;
+  padding: 20px;
+  background: rgba(46, 192, 149, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.infoItem:hover {
+  background: rgba(46, 192, 149, 0.1);
+  transform: translateY(-2px);
+}
+
+.infoIcon {
+  font-size: 1.5rem;
+  background: var(--color-accent-dark);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-  box-shadow: var(--shadow-accent);
+  flex-shrink: 0;
 }
 
-.submitButton:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--color-accent-bright) 0%, var(--color-accent-dark) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(46, 192, 149, 0.4);
+.infoContent h3 {
+  color: var(--color-accent-bright);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
 }
 
-.submitButton:active:not(:disabled) {
-  transform: translateY(0);
+.infoContent p {
+  color: var(--color-text-gray);
+  margin: 4px 0;
+  line-height: 1.5;
 }
 
-.submitButton:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
+.socialLinks {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.submitButton.loading {
-  pointer-events: none;
+.socialLink {
+  color: var(--color-accent-bright);
+  text-decoration: none;
+  padding: 6px 12px;
+  background: rgba(46, 192, 149, 0.1);
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
-/* Loading Spinner */
-.spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid transparent;
-  border-top: 2px solid var(--color-text-light);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.socialLink:hover {
+  background: var(--color-accent-bright);
+  color: var(--color-primary-dark);
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.quickContact {
+  background: var(--color-accent-dark);
+  padding: 24px;
+  border-radius: 12px;
+  margin-top: 2rem;
 }
 
-/* Responsive Design */
+.quickContact h3 {
+  color: var(--color-text-light);
+  margin: 0 0 12px 0;
+}
+
+.quickContact p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 8px 0;
+}
+
+.coordinatorInfo {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.coordinatorInfo strong {
+  color: var(--color-accent-bright);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Map Section */
+.mapSection {
+  text-align: center;
+}
+
+.mapContainer {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(46, 192, 149, 0.2);
+}
+
+.map {
+  width: 100%;
+  height: 400px;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
+}
+
+.mapContainer:hover .map {
+  filter: grayscale(0%);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .contentGrid {
+    gap: 40px;
+  }
+
+  .formSection, .infoSection {
+    padding: 32px;
+  }
+}
+
 @media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
-  }
-
-  .contactSection {
-    padding: 40px 0;
-  }
-
-  .formContainer {
-    padding: 32px 24px;
-    margin: 0 16px;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .nameRow {
+  .contentGrid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 40px;
+    margin-bottom: 60px;
   }
 
-  .phoneInput {
+  .hero {
+    padding: 90px 0 50px;
+  }
+
+  .mainContent {
+    padding: 60px 0;
+  }
+
+  .formSection, .infoSection {
+    padding: 28px;
+  }
+
+  .map {
+    height: 350px;
+  }
+}
+
+@media (max-width: 640px) {
+  .formSection, .infoSection {
+    padding: 24px;
+  }
+
+  .infoItem {
     flex-direction: column;
-    gap: 8px;
+    text-align: center;
+    padding: 20px 16px;
   }
 
-  .countryCode {
-    border-radius: 8px;
-    width: 100%;
-  }
-
-  .phoneNumber {
-    border-radius: 8px;
+  .socialLinks {
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
-  .formContainer {
-    padding: 24px 16px;
-    margin: 0 8px;
+  .hero {
+    padding: 80px 0 40px;
   }
 
-  .title {
-    font-size: 1.75rem;
+  .mainContent {
+    padding: 40px 0;
   }
 
-  .input,
-  .textarea,
-  .countryCode {
+  .formSection, .infoSection {
+    padding: 20px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .input, .select, .textarea {
     padding: 10px 12px;
   }
 
-  .submitButton {
-    padding: 14px 20px;
-  }
-}
-
-/* Focus and Accessibility */
-.input:focus,
-.textarea:focus,
-.submitButton:focus,
-.checkboxLabel:focus-within .checkmark {
-  outline: 2px solid var(--color-accent-bright);
-  outline-offset: 2px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .input,
-  .textarea {
-    border-width: 3px;
-  }
-
-  .submitButton {
-    border: 2px solid var(--color-accent-bright);
+  .map {
+    height: 300px;
   }
 }
