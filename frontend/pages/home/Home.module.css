@@ -610,6 +610,30 @@
   z-index: 2;
 }
 
+.ctaButtons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.ctaButtons .btnOutline {
+  background: var(--color-text-light);
+  color: var(--color-accent-dark);
+  border-color: var(--color-text-light);
+  font-weight: 600;
+}
+
+.ctaButtons .btnOutline:hover {
+  background: var(--color-text-gray);
+  color: var(--color-accent-dark);
+  border-color: var(--color-text-gray);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
 /* Enhanced Title Sponsor Section */
 .titleSponsor {
   padding: 120px 0;

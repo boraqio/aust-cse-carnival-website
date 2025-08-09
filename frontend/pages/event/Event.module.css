@@ -66,10 +66,11 @@
   margin-bottom: var(--spacing-xl);
 }
 
+/* Hero Button - Fixed color contrast and spacing */
 .heroButton {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   padding: var(--spacing-md) var(--spacing-xl);
   background: var(--color-accent-bright);
   color: var(--color-primary-dark);
@@ -77,12 +78,24 @@
   text-decoration: none;
   font-weight: 600;
   transition: all var(--transition-base);
+  border: 2px solid var(--color-accent-bright);
+  box-shadow: 0 4px 12px rgba(46, 192, 149, 0.2);
 }
 
 .heroButton:hover {
-  background: var(--color-accent-dark);
-  color: var(--color-text-light);
+  background: var(--color-primary-dark);
+  color: var(--color-accent-bright);
+  border-color: var(--color-accent-bright);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 192, 149, 0.3);
+}
+
+.heroButton .arrowIcon {
+  transition: transform var(--transition-base);
+}
+
+.heroButton:hover .arrowIcon {
+  transform: translateX(4px);
 }
 
 .carouselDots {
@@ -91,28 +104,18 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: var(--spacing-sm);
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-text-gray);
-  border: none;
-  cursor: pointer;
-  transition: all var(--transition-base);
-}
-
-.activeDot {
-  background: var(--color-accent-bright);
-  transform: scale(1.2);
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: rgba(2, 26, 26, 0.3);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(10px);
 }
 
 /* Partners Section */
 .partners {
   padding: var(--spacing-2xl) var(--spacing-xl);
   background: var(--color-secondary-dark);
+  margin: var(--spacing-xl) 0;
 }
 
 .sectionTitle {
@@ -134,10 +137,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   background: var(--color-primary-dark);
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
+  border: 2px solid transparent;
 }
 
 .partnerLogo img {
@@ -149,7 +153,8 @@
 
 .partnerLogo:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-accent);
+  box-shadow: 0 8px 25px rgba(46, 192, 149, 0.2);
+  border-color: rgba(46, 192, 149, 0.3);
 }
 
 .partnerLogo:hover img {
@@ -164,13 +169,14 @@
   padding: var(--spacing-2xl) var(--spacing-xl);
   background: var(--color-primary-dark);
   max-width: 1200px;
-  margin: 0 auto;
+  margin: var(--spacing-xl) auto;
 }
 
 .excitementContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: var(--spacing-md);
 }
 
 .label {
@@ -194,56 +200,62 @@
   line-height: 1.6;
 }
 
+/* Fixed button styling and spacing */
 .excitementButton {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   color: var(--color-accent-bright);
   text-decoration: none;
   font-weight: 600;
   transition: all var(--transition-base);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 2px solid transparent;
+  width: fit-content;
 }
 
 .excitementButton:hover {
   color: var(--color-text-light);
+  border-bottom-color: var(--color-accent-bright);
+}
+
+.excitementButton .arrowIcon {
+  transition: transform var(--transition-base);
+}
+
+.excitementButton:hover .arrowIcon {
+  transform: translateX(4px);
 }
 
 .commentsSection {
   background: var(--color-secondary-dark);
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl);
+  border: 1px solid rgba(46, 192, 149, 0.1);
 }
 
 .comment {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
 }
 
-.userAvatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+.comment:hover {
+  background: rgba(46, 192, 149, 0.05);
 }
 
-.commentContent {
-  flex: 1;
-}
-
-.commentContent h4 {
-  color: var(--color-accent-bright);
-  margin-bottom: var(--spacing-xs);
-}
-
-.commentContent p {
-  color: var(--color-text-gray);
+.comment:last-child {
+  margin-bottom: 0;
 }
 
 /* Timeline Section */
 .timeline {
   padding: var(--spacing-2xl) var(--spacing-xl);
   background: var(--color-secondary-dark);
+  margin: var(--spacing-xl) 0;
 }
 
 .timelineTitle {
@@ -281,17 +293,17 @@
 .timelineEvent {
   position: relative;
   width: 50%;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
 }
 
 .eventLeft {
   left: 0;
-  padding-right: var(--spacing-xl);
+  padding-right: var(--spacing-2xl);
 }
 
 .eventRight {
   left: 50%;
-  padding-left: var(--spacing-xl);
+  padding-left: var(--spacing-2xl);
 }
 
 .timelineCard {
@@ -314,24 +326,30 @@
 }
 
 .eventContent {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
 }
 
 .eventTime {
   color: var(--color-accent-bright);
   font-size: var(--font-size-sm);
   font-weight: 600;
+  background: rgba(46, 192, 149, 0.1);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
 }
 
 .eventTitle {
   color: var(--color-text-light);
-  margin: var(--spacing-sm) 0;
+  margin: var(--spacing-md) 0;
   font-size: var(--font-size-xl);
 }
 
 .eventDescription {
   color: var(--color-text-gray);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
 }
 
 .statusDot {

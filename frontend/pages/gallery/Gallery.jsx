@@ -94,11 +94,7 @@ const Gallery = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [imageLoadError, setImageLoadError] = useState(false);
   const [visibleSections, setVisibleSections] = useState(new Set(['hero'])); // Initialize with hero visible
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedYear, setSelectedYear] = useState('all');
-  const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const galleryRef = useRef(null);
   const roadmapRef = useRef(null);
   const observerRef = useRef(null);
 
@@ -136,7 +132,7 @@ const Gallery = () => {
       const sections = document.querySelectorAll('[data-section]');
       console.log('Found sections:', sections.length); // Debug log
 
-      sections.forEach((section, index) => {
+      sections.forEach((section) => {
         if (section && observerRef.current) {
           observerRef.current.observe(section);
           console.log('Observing section:', section.getAttribute('data-section')); // Debug log
@@ -220,7 +216,6 @@ const Gallery = () => {
     setIsGalleryOpen(false);
     setActiveGallery(null);
     setCurrentImageIndex(0);
-    setIsFullscreen(false);
     document.body.style.overflow = 'unset';
   }, []);
 
@@ -268,10 +263,6 @@ const Gallery = () => {
         case 'ArrowRight':
           nextImage();
           break;
-        case 'f':
-        case 'F':
-          setIsFullscreen(prev => !prev);
-          break;
         case ' ':
           e.preventDefault();
           nextImage();
@@ -309,13 +300,6 @@ const Gallery = () => {
     else if (isRightSwipe) prevImage();
   }, [touchStart, touchEnd, nextImage, prevImage]);
 
-  // Filter carnivals based on search and year
-  const filteredCarnivals = Object.entries(carnivalData).filter(([version, carnival]) => {
-    const matchesSearch = carnival.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         carnival.subtitle.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesYear = selectedYear === 'all' || carnival.year === selectedYear;
-    return matchesSearch && matchesYear;
-  });
 
   // Fixed Roadmap Section Component
   const RoadmapSection = ({ carnival, version, index }) => {
