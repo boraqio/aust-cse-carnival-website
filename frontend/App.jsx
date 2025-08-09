@@ -9,11 +9,12 @@ import 'aos/dist/aos.css';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/home/Home'));
-const Event = lazy(() => import('./pages/event/Event'));
+const Event = lazy(() => import('./pages/event/EventUpdated')); // Updated to use new component
 const Gallery = lazy(() => import('./pages/gallery/Gallery'));
 const Sponsor = lazy(() => import('./pages/sponsor/Sponsor'));
 const Contact = lazy(() => import('./pages/contact/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+const SegmentDetails = lazy(() => import('./pages/segment-details/SegmentDetails'));
 
 function App() {
   return (
