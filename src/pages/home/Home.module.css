@@ -364,7 +364,8 @@
 
 .btnPrimary:hover {
   background: transparent;
-  color: var(--color-accent-bright);
+  color: var(--color-text-light);
+  border-color: var(--color-text-light);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(46, 192, 149, 0.3);
 }
@@ -553,7 +554,7 @@
   width: 80px;
   height: 80px;
   margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--color-accent-bright), var(--color-accent-dark));
+  background: linear-gradient(135deg, var(--color-accent-dark), var(--color-secondary-dark));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -679,6 +680,11 @@
 .sponsorLogo {
   text-align: center;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .sponsorLogo img {
@@ -801,6 +807,11 @@
   text-align: center;
   margin-bottom: 2rem;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .organizerLogo img {

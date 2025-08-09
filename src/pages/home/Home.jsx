@@ -22,7 +22,7 @@ const Home = () => {
       {/* Use existing Header component */}
       <Header />
 
-      {/* Enhanced Hero Section with Image Carousel */}
+      {/* Hero Section with Image Carousel */}
       <section className={styles.hero}>
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
@@ -49,7 +49,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Discover Section WITHOUT React Icons */}
+      {/* Discover Section */}
       <section className={styles.discover}>
         <div className={styles.container}>
           <h2 className={styles.sectionTitle}>
@@ -142,10 +142,11 @@ const Home = () => {
 
             <div className={styles.organizerCard}>
               <div className={styles.organizerLogo}>
+                <img src={organizerLogo} alt="Operand Logo" />
                 <img src={coOrganizerLogo} alt="Perceptron Logo" />
               </div>
               <div className={styles.organizerContent}>
-                <h3>Co-Organizer</h3>
+                <h3>Powered by</h3>
                 <h4>Perceptron Tech Community</h4>
                 <p>
                   Perceptron is an innovative tech community focused on artificial intelligence, machine learning, and cutting-edge technologies. They bring expertise in modern development practices and help create engaging workshops, competitions, and learning opportunities for participants.
