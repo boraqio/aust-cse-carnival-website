@@ -25,7 +25,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    
     // Simulate form submission
     setTimeout(() => {
       alert('Message sent successfully!');
@@ -66,7 +66,7 @@ const Contact = () => {
                 <p className={styles.sectionSubtitle}>
                   Fill out the form below and we'll get back to you as soon as possible.
                 </p>
-
+                
                 <form className={styles.contactForm} onSubmit={handleSubmit}>
                   <div className={styles.formGroup}>
                     <label htmlFor="name" className={styles.label}>Full Name</label>
@@ -129,8 +129,8 @@ const Contact = () => {
                     ></textarea>
                   </div>
 
-                  <button
-                    type="submit"
+                  <button 
+                    type="submit" 
                     className={styles.submitBtn}
                     disabled={isSubmitting}
                   >

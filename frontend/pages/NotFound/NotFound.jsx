@@ -11,7 +11,7 @@ const NotFound = () => {
         <title>Page Not Found - AUST CSE Carnival</title>
         <meta name="description" content="The page you're looking for doesn't exist." />
       </Helmet>
-
+      
       <div className={styles.container}>
         <motion.div
           className={styles.content}
@@ -27,18 +27,18 @@ const NotFound = () => {
           >
             404
           </motion.div>
-
+          
           <h1 className={styles.title}>Page Not Found</h1>
           <p className={styles.description}>
             The page you're looking for doesn't exist or has been moved.
           </p>
-
+          
           <div className={styles.actions}>
             <Link to="/" className={styles.homeButton}>
               Go Home
             </Link>
-            <button
-              onClick={() => window.history.back()}
+            <button 
+              onClick={() => window.history.back()} 
               className={styles.backButton}
             >
               Go Back

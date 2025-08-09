@@ -130,7 +130,7 @@ function EventSchedule() {
               {carnivalSegments.prelims.map((event, index) => (
                 <div key={event.id} className={styles.roadmapEvent}>
                   <div className={styles.timelineNode}></div>
-                  <div className={styles.roadmapCard}>
+                  <Link to={`/segment/${event.id}`} className={styles.roadmapCard}>
                     <div className={styles.roadmapImage}>
                       <img src={event.image} alt={event.title} />
                       <div className={styles.eventTypeRoadmap}>{event.type}</div>
@@ -143,11 +143,11 @@ function EventSchedule() {
                         <span className={styles.eventCategoryRoadmap}>{event.category}</span>
                         <span className={styles.eventTeamSizeRoadmap}>{event.registration.teamSize}</span>
                       </div>
-                      <Link to={`/segment/${event.id}`} className={styles.eventButtonRoadmap}>
+                      <span className={styles.eventButtonRoadmap}>
                         Learn More →
-                      </Link>
+                      </span>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -163,7 +163,7 @@ function EventSchedule() {
               {carnivalSegments.mainSegments.map((event, index) => (
                 <div key={event.id} className={styles.roadmapEvent}>
                   <div className={styles.timelineNode}></div>
-                  <div className={styles.roadmapCard}>
+                  <Link to={`/segment/${event.id}`} className={styles.roadmapCard}>
                     <div className={styles.roadmapImage}>
                       <img src={event.image} alt={event.title} />
                       <div className={styles.eventTypeRoadmap}>{event.type}</div>
@@ -176,11 +176,11 @@ function EventSchedule() {
                         <span className={styles.eventCategoryRoadmap}>{event.category}</span>
                         <span className={styles.eventTeamSizeRoadmap}>{event.registration.teamSize}</span>
                       </div>
-                      <Link to={`/segment/${event.id}`} className={styles.eventButtonRoadmap}>
+                      <span className={styles.eventButtonRoadmap}>
                         Learn More →
-                      </Link>
+                      </span>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -192,16 +192,21 @@ function EventSchedule() {
 }
 
 function PartnersSection() {
+  // Duplicate partners array for seamless loop
+  const duplicatedPartners = [...partners, ...partners];
+
   return (
     <section className={styles.partners}>
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>Our Partners</h2>
-        <div className={styles.partnersGrid}>
-          {partners.map((partner) => (
-            <div key={partner.id} className={styles.partnerCard}>
-              <img src={partner.logo} alt={partner.name} className={styles.partnerLogo} />
-            </div>
-          ))}
+        <div className={styles.partnersContainer}>
+          <div className={styles.partnersTrack}>
+            {duplicatedPartners.map((partner, index) => (
+              <div key={`${partner.id}-${index}`} className={styles.partnerCard}>
+                <img src={partner.logo} alt={partner.name} className={styles.partnerLogo} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -217,8 +222,8 @@ function Event() {
     <div className={styles.event}>
       <Header />
       <HeroSection />
-      <EventSchedule />
-      <PartnersSection />
+        <PartnersSection />
+        <EventSchedule />
       <Footer />
     </div>
   );

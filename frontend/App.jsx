@@ -28,6 +28,7 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/sponsor" element={<Sponsor />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/segment/:id" element={<SegmentDetails />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

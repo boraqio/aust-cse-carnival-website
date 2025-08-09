@@ -214,9 +214,9 @@ const Footer = () => {
                 Terms of Service
               </Link>
               <span className={styles.divider}>•</span>
-              <a
-                href="https://boraq.io"
-                target="_blank"
+              <a 
+                href="https://boraq.io" 
+                target="_blank" 
                 rel="noopener noreferrer"
                 className={styles.developerCredit}
               >
