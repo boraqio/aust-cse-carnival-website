@@ -333,7 +333,7 @@
   align-items: center;
   margin-bottom: 1.5rem; /* Reduced from 3rem to 1.5rem */
   animation: slideInCenter 0.8s ease-out both;
-  max-height: 400px; /* Reduced from 200px to 150px */
+  min-height: 150px; /* Reduced from 200px to 150px */
 }
 
 .roadmapEvent:nth-child(even) {
