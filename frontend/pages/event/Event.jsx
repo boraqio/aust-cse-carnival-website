@@ -4,10 +4,15 @@ import styles from './Event.module.css';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 
-// Import images with correct paths
+// Import all 8 hero images from event page hero image gallery
 import heroImg1 from '../../assets/images/event page hero image gallery/carnival_1_img_13.jpg';
-import heroImg2 from '../../assets/images/event page hero image gallery/carnival_3_img_17.jpg';
-import heroImg3 from '../../assets/images/event page hero image gallery/carnival_5_img_32.jpg';
+import heroImg2 from '../../assets/images/event page hero image gallery/carnival_1_img_5.jpg';
+import heroImg3 from '../../assets/images/event page hero image gallery/carnival_1_img_6.jpg';
+import heroImg4 from '../../assets/images/event page hero image gallery/carnival_2_img_2.jpg';
+import heroImg5 from '../../assets/images/event page hero image gallery/carnival_3_img_17.jpg';
+import heroImg6 from '../../assets/images/event page hero image gallery/carnival_3_img_21.jpg';
+import heroImg7 from '../../assets/images/event page hero image gallery/carnival_5_img_32.jpg';
+import heroImg8 from '../../assets/images/event page hero image gallery/carnival_5_img_4.jpg';
 
 // Import partner logos
 import partner1 from '../../assets/images/partners/partner_1.png';
@@ -37,7 +42,8 @@ const partners = [
   { id: 6, name: 'Partner 6', logo: partner6 },
 ];
 
-const heroImages = [heroImg1, heroImg2, heroImg3];
+// Updated heroImages array with all 8 images
+const heroImages = [heroImg1, heroImg2, heroImg3, heroImg4, heroImg5, heroImg6, heroImg7, heroImg8];
 
 const timelineEvents = [
   {
@@ -199,22 +205,21 @@ function ExcitementSection() {
           View Gallery <span className={styles.arrowIcon}>→</span>
         </Link>
       </div>
+
       <div className={styles.commentsSection}>
-        <div className={styles.commentThread}>
-          {testimonials.map(testimonial => (
-            <div key={testimonial.id} className={styles.comment}>
-              <img
-                src={testimonial.avatar}
-                alt={testimonial.name}
-                className={styles.userAvatar}
-              />
-              <div className={styles.commentContent}>
-                <h4>{testimonial.name}</h4>
-                <p>{testimonial.comment}</p>
-              </div>
+        {testimonials.map(testimonial => (
+          <div key={testimonial.id} className={styles.comment}>
+            <img
+              src={testimonial.avatar}
+              alt={testimonial.name}
+              className={styles.userAvatar}
+            />
+            <div className={styles.commentContent}>
+              <h4>{testimonial.name}</h4>
+              <p>{testimonial.comment}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -223,10 +228,11 @@ function ExcitementSection() {
 function TimelineSection() {
   return (
     <section className={styles.timeline}>
-      <h2 className={styles.timelineTitle}>Timeline!</h2>
+      <h2 className={styles.timelineTitle}>Event Timeline</h2>
       <p className={styles.timelineSubtext}>
-        Experience the thrill of the AUST CSE Carnival and register now!
+        Follow our exciting schedule of events throughout the day
       </p>
+
       <div className={styles.timelineContainer}>
         {timelineEvents.map((event, index) => (
           <div
@@ -236,14 +242,18 @@ function TimelineSection() {
             }`}
           >
             <div className={styles.timelineCard}>
-              <img src={event.image} alt={event.title} className={styles.eventImage} />
+              <img
+                src={event.image}
+                alt={event.title}
+                className={styles.eventImage}
+              />
               <div className={styles.eventContent}>
-                <span className={styles.eventTime}>{event.time}</span>
+                <div className={styles.eventTime}>{event.time}</div>
                 <h3 className={styles.eventTitle}>{event.title}</h3>
                 <p className={styles.eventDescription}>{event.description}</p>
-                <div className={`${styles.statusDot} ${styles[event.status]}`} />
               </div>
             </div>
+            <div className={`${styles.statusDot} ${styles[event.status]}`}></div>
           </div>
         ))}
       </div>
@@ -251,18 +261,17 @@ function TimelineSection() {
   );
 }
 
-// Update the Event component to include Header and Footer
-export default function Event() {
+const Event = () => {
   return (
     <div className={styles.container}>
       <Header />
-      <main>
-        <HeroSection />
-        <PartnersSection />
-        <ExcitementSection />
-        <TimelineSection />
-      </main>
+      <HeroSection />
+      <PartnersSection />
+      <ExcitementSection />
+      <TimelineSection />
       <Footer />
     </div>
   );
-}
+};
+
+export default Event;
