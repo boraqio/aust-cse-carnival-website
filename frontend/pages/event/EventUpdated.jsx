@@ -192,16 +192,21 @@ function EventSchedule() {
 }
 
 function PartnersSection() {
+  // Duplicate partners array for seamless loop
+  const duplicatedPartners = [...partners, ...partners];
+
   return (
     <section className={styles.partners}>
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>Our Partners</h2>
-        <div className={styles.partnersGrid}>
-          {partners.map((partner) => (
-            <div key={partner.id} className={styles.partnerCard}>
-              <img src={partner.logo} alt={partner.name} className={styles.partnerLogo} />
-            </div>
-          ))}
+        <div className={styles.partnersContainer}>
+          <div className={styles.partnersTrack}>
+            {duplicatedPartners.map((partner, index) => (
+              <div key={`${partner.id}-${index}`} className={styles.partnerCard}>
+                <img src={partner.logo} alt={partner.name} className={styles.partnerLogo} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -217,8 +222,8 @@ function Event() {
     <div className={styles.event}>
       <Header />
       <HeroSection />
-      <EventSchedule />
-      <PartnersSection />
+        <PartnersSection />
+        <EventSchedule />
       <Footer />
     </div>
   );
