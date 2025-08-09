@@ -1,1 +1,20 @@
-{}
+{
+  "name": "aust-cse-carnival-website",
+  "version": "1.0.0",
+  "description": "AUST CSE Carnival Official Website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "server": "cd backend && npm run start",
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install"
+  },
+  "keywords": ["aust", "cse", "carnival", "react", "vite"],
+  "author": "AUST CSE Department",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
