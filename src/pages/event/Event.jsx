@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Event.module.css';
+import styles from './Event.module.css'; // Updated to use enhanced CSS
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import { carnivalSegments, getAllSegments } from '../../data/carnivalSegments';
 
 // Import all 8 hero images from event page hero image gallery
 import heroImg1 from '../../assets/images/event page hero image gallery/carnival_1_img_13.jpg';
@@ -22,17 +23,6 @@ import partner4 from '../../assets/images/partners/partner_4.png';
 import partner5 from '../../assets/images/partners/partner_5.png';
 import partner6 from '../../assets/images/partners/partner_6.png';
 
-// Import timeline event images
-import uiuxCompetition from '../../assets/images/segments/23 UIUX Competition.jpg';
-import mathOlympiad from '../../assets/images/segments/24 Math Olympiad Competition.jpg';
-import captureTheFlag from '../../assets/images/segments/25 Capture The Flag Competition.jpg';
-import quizCompetition from '../../assets/images/segments/26 Quiz Competition.jpg';
-import hackathon from '../../assets/images/segments/27 Hackathon.jpg';
-import chess from '../../assets/images/segments/28 Chess Competition.jpg';
-import eSports from '../../assets/images/segments/28 E-Sports Tournaments.jpg';
-import programming from '../../assets/images/segments/28 Programming Contest.jpg';
-import userAvatar from '../../assets/images/user-placeholder.jpg';
-
 const partners = [
   { id: 1, name: 'Partner 1', logo: partner1 },
   { id: 2, name: 'Partner 2', logo: partner2 },
@@ -44,73 +34,6 @@ const partners = [
 
 // Updated heroImages array with all 8 images
 const heroImages = [heroImg1, heroImg2, heroImg3, heroImg4, heroImg5, heroImg6, heroImg7, heroImg8];
-
-const timelineEvents = [
-  {
-    id: 1,
-    time: '8:00 AM',
-    title: 'Quiz Competition',
-    description: 'Test your knowledge in various domains of computer science.',
-    image: quizCompetition,
-    status: 'upcoming'
-  },
-  {
-    id: 2,
-    time: '9:30 AM',
-    title: 'UI/UX Competition',
-    description: 'Showcase your design skills and creative problem-solving abilities.',
-    image: uiuxCompetition,
-    status: 'upcoming'
-  },
-  {
-    id: 3,
-    time: '11:00 AM',
-    title: 'Math Olympiad',
-    description: 'Challenge yourself with complex mathematical problems.',
-    image: mathOlympiad,
-    status: 'upcoming'
-  },
-  {
-    id: 4,
-    time: '1:00 PM',
-    title: 'Capture The Flag',
-    description: 'Compete in cybersecurity challenges and find hidden flags.',
-    image: captureTheFlag,
-    status: 'upcoming'
-  },
-  {
-    id: 5,
-    time: '2:30 PM',
-    title: 'Hackathon',
-    description: 'Build innovative solutions in a time-constrained environment.',
-    image: hackathon,
-    status: 'upcoming'
-  },
-  {
-    id: 6,
-    time: '4:00 PM',
-    title: 'Programming Contest',
-    description: 'Solve algorithmic problems against the clock.',
-    image: programming,
-    status: 'upcoming'
-  },
-  {
-    id: 7,
-    time: '5:00 PM',
-    title: 'Chess Tournament',
-    description: 'Strategic battles on the checkered board.',
-    image: chess,
-    status: 'upcoming'
-  },
-  {
-    id: 8,
-    time: '6:00 PM',
-    title: 'E-Sports Tournament',
-    description: 'Compete in various gaming championships.',
-    image: eSports,
-    status: 'upcoming'
-  }
-];
 
 function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -131,9 +54,9 @@ function HeroSection() {
           className={styles.heroImage}
         />
         <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>Experience the Thrilling AUST CSE</h1>
+          <h1 className={styles.heroTitle}>Experience the Thrilling AUST CSE Carnival</h1>
           <p className={styles.heroSubtitle}>
-            Join us for a day of excitement, innovation, and fun!
+            Join us for a week of excitement, innovation, and fun from August 20-28, 2025!
           </p>
           <Link to="/gallery" className={styles.heroButton}>
             Gallery <span className={styles.arrowIcon}>→</span>
@@ -154,124 +77,195 @@ function HeroSection() {
   );
 }
 
+function EventSchedule() {
+  const [selectedTab, setSelectedTab] = useState('workshops');
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString.split(' - ')[0]); // Handle date ranges
+    return date.toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
+    });
+  };
+
+  const formatFullDate = (dateString) => {
+    if (dateString.includes(' - ')) {
+      const [startDate, endDate] = dateString.split(' - ');
+      return `${formatDate(startDate)} - ${formatDate(endDate)}`;
+    }
+    return formatDate(dateString);
+  };
+
+  return (
+    <section className={styles.schedule}>
+      <div className={styles.container}>
+        <h2 className={styles.sectionTitle}>Event Roadmap</h2>
+        <p className={styles.sectionSubtitle}>
+          Follow the journey through AUST CSE Carnival 2025 - August 20-28, 2025
+        </p>
+
+        {/* Tab Navigation */}
+        <div className={styles.tabNavigation}>
+          <button
+            className={`${styles.tabButton} ${selectedTab === 'workshops' ? styles.activeTab : ''}`}
+            onClick={() => setSelectedTab('workshops')}
+          >
+            Workshops
+          </button>
+          <button
+            className={`${styles.tabButton} ${selectedTab === 'prelims' ? styles.activeTab : ''}`}
+            onClick={() => setSelectedTab('prelims')}
+          >
+            Preliminaries
+          </button>
+          <button
+            className={`${styles.tabButton} ${selectedTab === 'main' ? styles.activeTab : ''}`}
+            onClick={() => setSelectedTab('main')}
+          >
+            Main Events
+          </button>
+        </div>
+
+        {/* Workshops Roadmap */}
+        {selectedTab === 'workshops' && (
+          <div className={styles.scheduleContent}>
+            <h3 className={styles.scheduleTitle}>Workshops Roadmap</h3>
+            <div className={styles.roadmapContainer}>
+              <div className={styles.timelinePath}></div>
+              {carnivalSegments.workshops.map((event, index) => (
+                <div key={event.id} className={styles.roadmapEvent}>
+                  <div className={styles.timelineNode}></div>
+                  <Link to={`/segment/${event.id}`} className={styles.roadmapCard}>
+                    <div className={styles.roadmapImage}>
+                      <img src={event.image} alt={event.title} />
+                      <div className={styles.eventTypeRoadmap}>{event.type}</div>
+                    </div>
+                    <div className={styles.roadmapContent}>
+                      <div className={styles.eventDateRoadmap}>{formatFullDate(event.date)}</div>
+                      <h4 className={styles.eventTitleRoadmap}>{event.title}</h4>
+                      <p className={styles.eventDescriptionRoadmap}>{event.description}</p>
+                      <div className={styles.eventDetailsRoadmap}>
+                        <span className={styles.eventCategoryRoadmap}>{event.category}</span>
+                        <span className={styles.eventTeamSizeRoadmap}>{event.registration.teamSize}</span>
+                      </div>
+                      <span className={styles.eventButtonRoadmap}>
+                        Learn More →
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Prelims Roadmap */}
+        {selectedTab === 'prelims' && (
+          <div className={styles.scheduleContent}>
+            <h3 className={styles.scheduleTitle}>Preliminary Events Roadmap</h3>
+            <div className={styles.roadmapContainer}>
+              <div className={styles.timelinePath}></div>
+              {carnivalSegments.prelims.map((event, index) => (
+                <div key={event.id} className={styles.roadmapEvent}>
+                  <div className={styles.timelineNode}></div>
+                  <Link to={`/segment/${event.id}`} className={styles.roadmapCard}>
+                    <div className={styles.roadmapImage}>
+                      <img src={event.image} alt={event.title} />
+                      <div className={styles.eventTypeRoadmap}>{event.type}</div>
+                    </div>
+                    <div className={styles.roadmapContent}>
+                      <div className={styles.eventDateRoadmap}>{formatFullDate(event.date)}</div>
+                      <h4 className={styles.eventTitleRoadmap}>{event.title}</h4>
+                      <p className={styles.eventDescriptionRoadmap}>{event.description}</p>
+                      <div className={styles.eventDetailsRoadmap}>
+                        <span className={styles.eventCategoryRoadmap}>{event.category}</span>
+                        <span className={styles.eventTeamSizeRoadmap}>{event.registration.teamSize}</span>
+                      </div>
+                      <span className={styles.eventButtonRoadmap}>
+                        Learn More →
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Main Events Roadmap */}
+        {selectedTab === 'main' && (
+          <div className={styles.scheduleContent}>
+            <h3 className={styles.scheduleTitle}>Main Events Roadmap</h3>
+            <div className={styles.roadmapContainer}>
+              <div className={styles.timelinePath}></div>
+              {carnivalSegments.mainSegments.map((event, index) => (
+                <div key={event.id} className={styles.roadmapEvent}>
+                  <div className={styles.timelineNode}></div>
+                  <Link to={`/segment/${event.id}`} className={styles.roadmapCard}>
+                    <div className={styles.roadmapImage}>
+                      <img src={event.image} alt={event.title} />
+                      <div className={styles.eventTypeRoadmap}>{event.type}</div>
+                    </div>
+                    <div className={styles.roadmapContent}>
+                      <div className={styles.eventDateRoadmap}>{formatFullDate(event.date)}</div>
+                      <h4 className={styles.eventTitleRoadmap}>{event.title}</h4>
+                      <p className={styles.eventDescriptionRoadmap}>{event.description}</p>
+                      <div className={styles.eventDetailsRoadmap}>
+                        <span className={styles.eventCategoryRoadmap}>{event.category}</span>
+                        <span className={styles.eventTeamSizeRoadmap}>{event.registration.teamSize}</span>
+                      </div>
+                      <span className={styles.eventButtonRoadmap}>
+                        Learn More →
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function PartnersSection() {
+  // Duplicate partners array for seamless loop
+  const duplicatedPartners = [...partners, ...partners];
+
   return (
     <section className={styles.partners}>
-      <h2 className={styles.sectionTitle}>Partners</h2>
-      <div className={styles.partnerGrid}>
-        {partners.map(partner => (
-          <div key={partner.id} className={styles.partnerLogo}>
-            <img src={partner.logo} alt={partner.name} />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function ExcitementSection() {
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Sarah Ahmed',
-      comment: 'The workshops were incredibly informative and engaging. Learned so much!',
-      avatar: userAvatar
-    },
-    {
-      id: 2,
-      name: 'Rahul Khan',
-      comment: 'Amazing experience at the hackathon. Great organization and challenging problems.',
-      avatar: userAvatar
-    },
-    {
-      id: 3,
-      name: 'Fatima Hassan',
-      comment: 'The programming contest was tough but really fun. Looking forward to next year!',
-      avatar: userAvatar
-    }
-  ];
-
-  return (
-    <section className={styles.excitement}>
-      <div className={styles.excitementContent}>
-        <span className={styles.label}>Excitement</span>
-        <h2 className={styles.excitementTitle}>Experience of AUST CSE Carnival</h2>
-        <p className={styles.excitementDescription}>
-          Join us for an unforgettable journey through technology, innovation, and
-          creativity. Experience workshops, competitions, and networking opportunities
-          that will shape your future in tech.
-        </p>
-        <Link to="/gallery" className={styles.excitementButton}>
-          View Gallery <span className={styles.arrowIcon}>→</span>
-        </Link>
-      </div>
-
-      <div className={styles.commentsSection}>
-        {testimonials.map(testimonial => (
-          <div key={testimonial.id} className={styles.comment}>
-            <img
-              src={testimonial.avatar}
-              alt={testimonial.name}
-              className={styles.userAvatar}
-            />
-            <div className={styles.commentContent}>
-              <h4>{testimonial.name}</h4>
-              <p>{testimonial.comment}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function TimelineSection() {
-  return (
-    <section className={styles.timeline}>
-      <h2 className={styles.timelineTitle}>Event Timeline</h2>
-      <p className={styles.timelineSubtext}>
-        Follow our exciting schedule of events throughout the day
-      </p>
-
-      <div className={styles.timelineContainer}>
-        {timelineEvents.map((event, index) => (
-          <div
-            key={event.id}
-            className={`${styles.timelineEvent} ${
-              index % 2 === 0 ? styles.eventLeft : styles.eventRight
-            }`}
-          >
-            <div className={styles.timelineCard}>
-              <img
-                src={event.image}
-                alt={event.title}
-                className={styles.eventImage}
-              />
-              <div className={styles.eventContent}>
-                <div className={styles.eventTime}>{event.time}</div>
-                <h3 className={styles.eventTitle}>{event.title}</h3>
-                <p className={styles.eventDescription}>{event.description}</p>
+      <div className={styles.container}>
+        <h2 className={styles.sectionTitle}>Our Partners</h2>
+        <div className={styles.partnersContainer}>
+          <div className={styles.partnersTrack}>
+            {duplicatedPartners.map((partner, index) => (
+              <div key={`${partner.id}-${index}`} className={styles.partnerCard}>
+                <img src={partner.logo} alt={partner.name} className={styles.partnerLogo} />
               </div>
-            </div>
-            <div className={`${styles.statusDot} ${styles[event.status]}`}></div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
 }
 
-const Event = () => {
+function Event() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.event}>
       <Header />
       <HeroSection />
-      <PartnersSection />
-      <ExcitementSection />
-      <TimelineSection />
+        <PartnersSection />
+        <EventSchedule />
       <Footer />
     </div>
   );
-};
+}
 
 export default Event;
