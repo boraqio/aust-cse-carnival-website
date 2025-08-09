@@ -130,7 +130,7 @@ function EventSchedule() {
               {carnivalSegments.prelims.map((event, index) => (
                 <div key={event.id} className={styles.roadmapEvent}>
                   <div className={styles.timelineNode}></div>
-                  <div className={styles.roadmapCard}>
+                  <Link to={`/segment/${event.id}`} className={styles.roadmapCard}>
                     <div className={styles.roadmapImage}>
                       <img src={event.image} alt={event.title} />
                       <div className={styles.eventTypeRoadmap}>{event.type}</div>
@@ -143,11 +143,11 @@ function EventSchedule() {
                         <span className={styles.eventCategoryRoadmap}>{event.category}</span>
                         <span className={styles.eventTeamSizeRoadmap}>{event.registration.teamSize}</span>
                       </div>
-                      <Link to={`/segment/${event.id}`} className={styles.eventButtonRoadmap}>
+                      <span className={styles.eventButtonRoadmap}>
                         Learn More →
-                      </Link>
+                      </span>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -163,7 +163,7 @@ function EventSchedule() {
               {carnivalSegments.mainSegments.map((event, index) => (
                 <div key={event.id} className={styles.roadmapEvent}>
                   <div className={styles.timelineNode}></div>
-                  <div className={styles.roadmapCard}>
+                  <Link to={`/segment/${event.id}`} className={styles.roadmapCard}>
                     <div className={styles.roadmapImage}>
                       <img src={event.image} alt={event.title} />
                       <div className={styles.eventTypeRoadmap}>{event.type}</div>
@@ -176,11 +176,11 @@ function EventSchedule() {
                         <span className={styles.eventCategoryRoadmap}>{event.category}</span>
                         <span className={styles.eventTeamSizeRoadmap}>{event.registration.teamSize}</span>
                       </div>
-                      <Link to={`/segment/${event.id}`} className={styles.eventButtonRoadmap}>
+                      <span className={styles.eventButtonRoadmap}>
                         Learn More →
-                      </Link>
+                      </span>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
