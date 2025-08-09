@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import Icon from '../../components/common/Icon';
 import styles from './Gallery.module.css';
 
 // Import carnival images with proper error handling and correct paths
@@ -26,7 +27,7 @@ const carnivalData = {
     year: "2021",
     gradient: "linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-accent-dark) 100%)",
     accentColor: "#03624c",
-    icon: "🚀",
+    icon: "rocket",
     position: "left",
     images: importCarnivalImages("1", 18),
     stats: { photos: 18, events: 5, participants: "500+", duration: "3 days" },
@@ -39,7 +40,7 @@ const carnivalData = {
     year: "2022",
     gradient: "linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent-bright) 100%)",
     accentColor: "#2ec095",
-    icon: "🎯",
+    icon: "target",
     position: "right",
     images: importCarnivalImages("2", 6),
     stats: { photos: 6, events: 6, participants: "750+", duration: "3 days" },
@@ -52,7 +53,7 @@ const carnivalData = {
     year: "2023",
     gradient: "linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary-dark) 100%)",
     accentColor: "#042222",
-    icon: "⭐",
+    icon: "star",
     position: "left",
     images: importCarnivalImages("3", 8),
     stats: { photos: 8, events: 7, participants: "1000+", duration: "4 days" },
@@ -65,7 +66,7 @@ const carnivalData = {
     year: "2024",
     gradient: "linear-gradient(135deg, var(--color-accent-bright) 0%, var(--color-accent-dark) 100%)",
     accentColor: "#2ec095",
-    icon: "🎪",
+    icon: "tent",
     position: "right",
     images: importCarnivalImages("4", 10),
     stats: { photos: 10, events: 8, participants: "1200+", duration: "4 days" },
@@ -78,7 +79,7 @@ const carnivalData = {
     year: "2025",
     gradient: "linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-accent-bright) 100%)",
     accentColor: "#2ec095",
-    icon: "🌟",
+    icon: "sparkles",
     position: "left",
     images: importCarnivalImages("5", 12),
     stats: { photos: 12, events: 10, participants: "1500+", duration: "5 days" },
@@ -335,7 +336,7 @@ const Gallery = () => {
             <span className={styles.yearText}>{carnival.year}</span>
           </div>
           <div className={styles.timelineDot} style={{ backgroundColor: carnival.accentColor }}>
-            <span className={styles.carnivalIcon}>{carnival.icon}</span>
+            <Icon type={carnival.icon} size="medium" />
           </div>
           {index < Object.keys(carnivalData).length - 1 && (
             <div className={styles.timelineLine} style={{ backgroundColor: carnival.accentColor }}></div>
@@ -351,7 +352,9 @@ const Gallery = () => {
           <div className={styles.cardGlow} style={{ boxShadow: `0 0 50px ${carnival.accentColor}40` }}></div>
 
           <div className={styles.cardHeader}>
-            <div className={styles.cardIcon}>{carnival.icon}</div>
+            <div className={styles.cardIcon}>
+              <Icon type={carnival.icon} size="large" />
+            </div>
             <div className={styles.cardYear}>{carnival.year}</div>
           </div>
 
@@ -396,7 +399,9 @@ const Gallery = () => {
               aria-label={`View ${carnival.title} gallery`}
             >
               <span className={styles.buttonText}>View Gallery</span>
-              <span className={styles.buttonIcon}>📸</span>
+              <span className={styles.buttonIcon}>
+                <Icon type="camera" size="medium" />
+              </span>
               <div className={styles.buttonRipple}></div>
             </button>
           </div>
@@ -485,7 +490,7 @@ const Gallery = () => {
                   />
                   {imageLoadError && (
                     <div className={styles.imageError}>
-                      <span>📷</span>
+                      <Icon type="camera" size="large" />
                       <p>Unable to load image</p>
                     </div>
                   )}
@@ -540,7 +545,9 @@ const Gallery = () => {
             <div className={styles.heroContent}>
               <h1 className={styles.pageTitle}>
                 <span className={styles.titleGradient}>Best Memories</span>
-                <span className={styles.titleAccent}>✨</span>
+                <span className={styles.titleAccent}>
+                  <Icon type="sparkles" size="large" />
+                </span>
               </h1>
               <p className={styles.pageSubtitle}>
                 Journey through the evolution of AUST CSE Carnival - from humble beginnings to extraordinary celebrations
@@ -588,7 +595,9 @@ const Gallery = () => {
         <section className={styles.currentCarnival} data-section="current">
           <div className={styles.container}>
             <div className={styles.currentCard}>
-              <div className={styles.currentIcon}>🎪</div>
+              <div className={styles.currentIcon}>
+                <Icon type="tent" size="xxlarge" />
+              </div>
               <h2 className={styles.currentTitle}>AUST CSE Carnival 5.0</h2>
               <p className={styles.currentSubtitle}>
                 The latest and most spectacular edition of our carnival journey, featuring cutting-edge technology and unforgettable experiences.

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import Icon from '../../components/common/Icon';
 import styles from './Home.module.css';
 
 // Import images properly for Vite
@@ -61,21 +62,21 @@ const Home = () => {
           <div className={styles.featuresGrid}>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>
-                📅
+                <Icon type="calendar" size="xlarge" />
               </div>
               <h3 className={styles.featureTitle}>Main Events</h3>
               <p className={styles.featureDescription}>Experience exciting programming contests, hackathons, and technical competitions that challenge your skills.</p>
             </div>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>
-                🎓
+                <Icon type="graduation" size="xlarge" />
               </div>
               <h3 className={styles.featureTitle}>Workshops</h3>
               <p className={styles.featureDescription}>Learn from industry experts through hands-on workshops covering latest technologies and best practices.</p>
             </div>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>
-                🏆
+                <Icon type="trophy" size="xlarge" />
               </div>
               <h3 className={styles.featureTitle}>Activities</h3>
               <p className={styles.featureDescription}>Participate in fun activities, networking sessions, and cultural events throughout the carnival.</p>
