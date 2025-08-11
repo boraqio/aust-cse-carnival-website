@@ -169,8 +169,8 @@ const Contact = () => {
                     </div>
                     <div className={styles.infoContent}>
                       <h3>Phone</h3>
-                      <p>+880 2-8870723</p>
-                      <p>+880 2-8870724</p>
+                      <p>+880 1890-430560</p>
+                      <p>+880 1732-395364</p>
                     </div>
                   </div>
 
@@ -180,8 +180,8 @@ const Contact = () => {
                     </div>
                     <div className={styles.infoContent}>
                       <h3>Email</h3>
-                      <p>carnival@cse.aust.edu</p>
-                      <p>info@austcse.org</p>
+                      <p>austcsecarnival@gmail.com</p>
+                      <p>rakib.cse.20210204027@aust.edu</p>
                     </div>
                   </div>
 
@@ -192,9 +192,9 @@ const Contact = () => {
                     <div className={styles.infoContent}>
                       <h3>Social Media</h3>
                       <div className={styles.socialLinks}>
-                        <a href="#" className={styles.socialLink}>Facebook</a>
-                        <a href="#" className={styles.socialLink}>Instagram</a>
-                        <a href="#" className={styles.socialLink}>LinkedIn</a>
+                        <a href="https://facebook.com/austcsecarnivalofficial" className={styles.socialLink}>Facebook</a>
+                        <a href="https://wa.me/8801890430560" className={styles.socialLink}>WhatsApp</a>
+                        <a href="https://youtube.com/playlist?list=PL5qPo7BnQjCBElhY9ciX6k3cP_-c-awzv&si=amj90SjwH3JjN798" className={styles.socialLink}>YouTube</a>
                       </div>
                     </div>
                   </div>
@@ -206,8 +206,8 @@ const Contact = () => {
                   <p>For urgent inquiries, contact our event coordinator directly:</p>
                   <div className={styles.coordinatorInfo}>
                     <strong>Event Coordinator</strong>
-                    <p>Phone: +880 1711-123456</p>
-                    <p>Email: coordinator@austcse.org</p>
+                    <p>Phone: +880 1890-430560</p>
+                    <p>Email: rakib.cse.20210204027@aust.edu</p>
                   </div>
                 </div>
               </div>

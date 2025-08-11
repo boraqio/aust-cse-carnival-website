@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   FiFacebook,
-  FiInstagram,
-  FiLinkedin,
   FiMail,
   FiPhone,
   FiMapPin,
   FiExternalLink
 } from 'react-icons/fi';
+import { FaWhatsapp, FaYoutube } from 'react-icons/fa';
 import styles from './Footer.module.css';
 import siteLogo from '../../assets/images/site_logo.png';
 
@@ -25,20 +24,20 @@ const socialLinks = [
   {
     name: 'Facebook',
     icon: FiFacebook,
-    url: 'https://facebook.com/austcse',
+    url: 'https://facebook.com/austcsecarnivalofficial',
     color: '#1877F2'
   },
   {
-    name: 'Instagram',
-    icon: FiInstagram,
-    url: 'https://instagram.com/austcse',
-    color: '#E4405F'
+    name: 'WhatsApp',
+    icon: FaWhatsapp,
+    url: 'https://wa.me/8801890430560',
+    color: '#25D366'
   },
   {
-    name: 'LinkedIn',
-    icon: FiLinkedin,
-    url: 'https://linkedin.com/company/aust-cse',
-    color: '#0A66C2'
+    name: 'YouTube',
+    icon: FaYoutube,
+    url: 'https://youtube.com/playlist?list=PL5qPo7BnQjCBElhY9ciX6k3cP_-c-awzv&si=amj90SjwH3JjN798',
+    color: '#FF0000'
   }
 ];
 
@@ -46,14 +45,14 @@ const contactInfo = [
   {
     icon: FiMail,
     label: 'Email',
-    value: 'info@austcse.org',
-    link: 'mailto:info@austcse.org'
+    value: 'austcsecarnival@gmail.com',
+    link: 'mailto:austcsecarnival@gmail.com'
   },
   {
     icon: FiPhone,
     label: 'Phone',
-    value: '+880 123 456 789',
-    link: 'tel:+880123456789'
+    value: '+880 1890-430560',
+    link: 'tel:+8801890430560'
   },
   {
     icon: FiMapPin,
@@ -180,7 +179,7 @@ const Footer = () => {
             <div className={styles.eventInfo}>
               <div className={styles.eventItem}>
                 <span className={styles.eventLabel}>Date:</span>
-                <span className={styles.eventValue}>Coming Soon</span>
+                <span className={styles.eventValue}>21-28 August</span>
               </div>
               <div className={styles.eventItem}>
                 <span className={styles.eventLabel}>Venue:</span>
