@@ -83,18 +83,22 @@ function SponsorsSection() {
             ))}
           </div>
         </div>
-
-        <div className={styles.ItGraphicsPartnershipButton}>
-          <h2 className={styles.sectionTitle}>IT & Graphics  Partner</h2>
-          <img src={boraq} alt="Boraq Logo" className={styles.boraqLogo} />
-          <p className={styles.ctaDescription}>
-            Boraq combines advanced technologies and modern solutions to streamline operations and enhance user experiences. We deliver innovative services that foster growth and digital transformation.
-          </p>
-          <Link to="https://boraq.io" className={styles.ctaButton}>
-            Visit Boraq
-          </Link>
-        </div>
       </div>
+    </section>
+  );
+}
+
+function ItGraphicsPartnership() {
+  return (
+    <section className={styles.ItGraphicsPartnershipButton}>
+      <h2 className={styles.sectionTitle}>IT & Graphics Partner</h2>
+      <img src={boraq} alt="Boraq Logo" className={styles.boraqLogo} />
+      <p className={styles.ctaDescription}>
+        Boraq combines advanced technologies and modern solutions to streamline operations and enhance user experiences. We deliver innovative services that foster growth and digital transformation.
+      </p>
+      <Link to="https://boraq.io" className={styles.ctaButton}>
+        Visit Boraq
+      </Link>
     </section>
   );
 }
@@ -143,6 +147,7 @@ export default function Sponsor() {
       <main className={styles.main}>
         <HeroSection />
         <SponsorsSection />
+        <ItGraphicsPartnership />
         <TitleSponsorSection />
         <ContactCTA />
       </main>
