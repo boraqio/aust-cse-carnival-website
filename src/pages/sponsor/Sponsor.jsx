@@ -83,17 +83,22 @@ function SponsorsSection() {
             ))}
           </div>
         </div>
-
-        <div className={styles.ItGraphicsPartnershipButton}>
-          <img src={boraq} alt="Boraq Logo" className={styles.boraqLogo} />
-          <p className={styles.ctaDescription}>
-            Boraq combines advanced technologies and modern solutions to streamline operations and enhance user experiences. We deliver innovative services that foster growth and digital transformation.
-          </p>
-          <Link to="https://boraq.io" className={styles.ctaButton}>
-            Visit Boraq
-          </Link>
-        </div>
       </div>
+    </section>
+  );
+}
+
+function ItGraphicsPartnership() {
+  return (
+    <section className={styles.ItGraphicsPartnershipButton}>
+      <h2 className={styles.sectionTitle}>IT & Graphics Partner</h2>
+      <img src={boraq} alt="Boraq Logo" className={styles.boraqLogo} />
+      <p className={styles.ctaDescription}>
+        Boraq combines advanced technologies and modern solutions to streamline operations and enhance user experiences. We deliver innovative services that foster growth and digital transformation.
+      </p>
+      <Link to="https://boraq.io" className={styles.ctaButton}>
+        Visit Boraq
+      </Link>
     </section>
   );
 }
@@ -107,11 +112,11 @@ function TitleSponsorSection() {
           <img src={titleSponsorLogo} alt="Title Sponsor" />
         </div>
         <div className={styles.titleSponsorInfo}>
-          <h3 className={styles.companyName}>HABIT</h3>
+          <h3 className={styles.companyName}>Havit Bangladesh</h3>
           <p className={styles.companyDescription}>
-            A leading innovator in technology solutions, HABIT has been at the forefront
-            of digital transformation. As our title sponsor, they bring their expertise
-            and commitment to fostering tech talent in Bangladesh.
+            Founded in 1998, HAVIT is a global consumer tech brand that integrates R&D, industrial design, large-scale production, and global omnichannel marketing. It encompasses audio devices, gaming gears, mobile accessories, and smart life electronic products.
+            <br/><br/>
+            Welcome to Havit Bangladesh. Our vision is Exploring innovative technology and providing smart, aesthetic and functional products to service users in Bangladesh. Applying innovative technology to empower everyone to become fun creators of a better life. Explore and Innovate; Strive and Undertake.
           </p>
         </div>
       </div>
@@ -142,6 +147,7 @@ export default function Sponsor() {
       <main className={styles.main}>
         <HeroSection />
         <SponsorsSection />
+        <ItGraphicsPartnership />
         <TitleSponsorSection />
         <ContactCTA />
       </main>
