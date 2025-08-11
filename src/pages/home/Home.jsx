@@ -103,11 +103,11 @@ const Home = () => {
               Experience the Thrilling AUST CSE Carnival
             </h1>
             <p className={styles.heroSubtitle}>
-              Join us for a day of innovation, competition, and fun!
+              Join us for a week of innovation, competition, and fun!
             </p>
             <div className={styles.heroButtons}>
               <Link to="/event" className={styles.btnPrimary}>Learn More</Link>
-              <Link to="/contact" className={styles.btnSecondary}>Register Now</Link>
+              <Link to="Join us for a week of innovation, competition, and fun!" className={styles.btnSecondary}>Facebook Page</Link>
             </div>
           </div>
 
