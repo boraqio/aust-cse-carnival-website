@@ -110,7 +110,7 @@
 }
 
 .ctaButton {
-  background: var(--gradient-primary);
+  background: var(--color-accent-bright);
   color: var(--color-text-light);
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-md);
@@ -202,7 +202,7 @@
   display: block;
   width: 100%;
   text-align: center;
-  background: var(--gradient-primary);
+  background: var(--color-accent-bright);
   color: var(--color-text-light);
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
