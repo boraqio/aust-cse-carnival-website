@@ -542,16 +542,16 @@ const Gallery = () => {
               </p>
               <div className={styles.heroStats}>
                 <div className={styles.heroStat}>
-                  <span className={styles.heroStatNumber}>5</span>
+                  <span className={styles.heroStatNumber}>6</span>
                   <span className={styles.heroStatLabel}>Carnival Editions</span>
                 </div>
                 <div className={styles.heroStat}>
-                  <span className={styles.heroStatNumber}>54+</span>
-                  <span className={styles.heroStatLabel}>Total Photos</span>
+                  <span className={styles.heroStatNumber}>12+</span>
+                  <span className={styles.heroStatLabel}>Total segments</span>
                 </div>
                 <div className={styles.heroStat}>
                   <span className={styles.heroStatNumber}>5000+</span>
-                  <span className={styles.heroStatLabel}>Memories Captured</span>
+                  <span className={styles.heroStatLabel}>Total participations</span>
                 </div>
               </div>
             </div>

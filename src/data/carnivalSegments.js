@@ -4,14 +4,14 @@
 export const carnivalSegments = {
   workshops: [
     {
-      id: 'prelim-math-olympiad',
-      title: 'Math Olympiad Competition',
-      type: 'Onsite',
-      date: 'August 20, 2025',
-      time: 'TBA',
-      description: 'Test your mathematical prowess in this challenging preliminary round.',
-      category: 'Academic',
-      image: '/src/assets/images/segments/24 Math Olympiad Competition.jpg',
+      id: 'workshop-capture-the-flag',
+      title: 'Capture The Flag Bootcamp - Session 01',
+      type: 'Online',
+      date: 'August 01, 2025',
+      time: ' 5:00 PM',
+      description: ' Join our Capture The Flag bootcamp to learn the basics of cybersecurity and prepare for the CTF competition.',
+      category: 'Security',
+      image: '/src/assets/images/segments/25 Capture The Flag Competition.jpg',
       registration: {
         deadline: 'August 18, 2025',
         fee: 'Free',
@@ -19,10 +19,41 @@ export const carnivalSegments = {
       }
     },
     {
-      id: 'prelim-hackathon',
-      title: 'Hackathon',
-      type: 'Onsite',
-      date: 'August 21, 2025',
+      id: 'workshop-capture-the-flag',
+      title: 'Capture The Flag Bootcamp - Session 02',
+      type: 'Online',
+      date: 'August 08, 2025',
+      time: ' 5:00 PM',
+      description: ' Join our Capture The Flag bootcamp to learn the basics of cybersecurity and prepare for the CTF competition.',
+      category: 'Security',
+      image: '/src/assets/images/segments/25 Capture The Flag Competition.jpg',
+      registration: {
+        deadline: 'August 18, 2025',
+        fee: 'Free',
+        teamSize: 'Individual'
+      }
+    },
+      // session  03
+    {
+        id: 'workshop-capture-the-flag',
+        title: 'Capture The Flag Bootcamp - Session 03',
+        type: 'Online',
+        date: 'August 15, 2025',
+        time: ' 5:00 PM',
+        description: ' Join our Capture The Flag bootcamp to learn the basics of cybersecurity and prepare for the CTF competition.',
+        category: 'Security',
+        image: '/src/assets/images/segments/25 Capture The Flag Competition.jpg',
+        registration: {
+          deadline: 'August 18, 2025',
+          fee: 'Free',
+          teamSize: 'Individual'
+        }
+    },
+    {
+      id: 'workshop-hackathon',
+      title: 'Hackathon Bootcamp',
+      type: 'Online',
+      date: 'TBA',
       time: 'TBA',
       description: 'Build innovative solutions in this intensive preliminary hackathon.',
       category: 'Development',
@@ -32,39 +63,10 @@ export const carnivalSegments = {
         fee: 'Free',
         teamSize: '3-4 members'
       }
-    },
-    {
-      id: 'prelim-programming-contest',
-      title: 'Programming Contest',
-      type: 'Online',
-      date: 'August 22, 2025',
-      time: 'TBA',
-      description: 'Solve algorithmic challenges in this online preliminary contest.',
-      category: 'Programming',
-      image: '/src/assets/images/segments/28 Programming Contest.jpg',
-      registration: {
-        deadline: 'August 20, 2025',
-        fee: 'Free',
-        teamSize: 'Individual'
-      }
     }
   ],
+
   prelims: [
-    {
-      id: 'prelim-math-olympiad',
-      title: 'Math Olympiad Competition',
-      type: 'Onsite',
-      date: 'August 20, 2025',
-      time: 'TBA',
-      description: 'Test your mathematical prowess in this challenging preliminary round.',
-      category: 'Academic',
-      image: '/src/assets/images/segments/24 Math Olympiad Competition.jpg',
-      registration: {
-        deadline: 'August 18, 2025',
-        fee: 'Free',
-        teamSize: 'Individual'
-      }
-    },
     {
       id: 'prelim-hackathon',
       title: 'Hackathon',
