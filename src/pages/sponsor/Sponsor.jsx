@@ -89,9 +89,9 @@ function SponsorsSection() {
           <p className={styles.ctaDescription}>
             Boraq combines advanced technologies and modern solutions to streamline operations and enhance user experiences. We deliver innovative services that foster growth and digital transformation.
           </p>
-          <button className={styles.partnershipButton}>
+          <Link to="https://boraq.io" className={styles.ctaButton}>
             Visit Boraq
-          </button>
+          </Link>
         </div>
       </div>
     </section>
