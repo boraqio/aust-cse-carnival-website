@@ -172,6 +172,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .mobileNavLink {
@@ -196,19 +198,25 @@
   margin-top: var(--spacing-md);
   padding-top: var(--spacing-md);
   border-top: 1px solid var(--color-secondary-dark);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mobileCtaButton {
   display: block;
-  width: 100%;
+  width: calc(100% - 2rem); /* Subtract padding to prevent overflow */
+  max-width: 300px; /* Add max-width for better control */
+  margin: 0 auto; /* Center the button */
   text-align: center;
   background: var(--color-accent-bright);
   color: var(--color-text-light);
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-sm);
   border-radius: var(--radius-md);
   text-decoration: none;
   font-weight: 600;
+  font-size: var(--font-size-base);
   transition: all var(--transition-base);
+  box-sizing: border-box;
 }
 
 .mobileCtaButton:hover {
