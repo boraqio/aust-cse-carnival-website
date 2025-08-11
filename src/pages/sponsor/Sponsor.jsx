@@ -85,7 +85,7 @@ function SponsorsSection() {
         </div>
 
         <div className={styles.ItGraphicsPartnershipButton}>
-          <img src={partner3} alt="Boraq Logo" className={styles.boraqLogo} />
+          <img src={boraq} alt="Boraq Logo" className={styles.boraqLogo} />
           <p className={styles.ctaDescription}>
             Boraq combines advanced technologies and modern solutions to streamline operations and enhance user experiences. We deliver innovative services that foster growth and digital transformation.
           </p>
