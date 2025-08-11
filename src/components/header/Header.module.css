@@ -165,6 +165,8 @@
   border-top: 1px solid var(--color-accent-dark);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mobileMenuContent {
