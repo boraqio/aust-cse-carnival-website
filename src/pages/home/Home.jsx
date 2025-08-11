@@ -57,7 +57,7 @@ function FAQSection() {
   return (
       <section className={styles.faq}>
         <div className={styles.faqHeader}>
-          <h2 className={styles.sectionTitle}>Frequently asked questions</h2>
+          <h2 className={styles.sectionTitleFAQ}>Frequently asked questions</h2>
           <p className={styles.sectionSubtitle}>
             Everything you need to know about the sponsorship and billing.
           </p>
