@@ -39,7 +39,7 @@ const carnivalData = {
     description: "Building upon our foundation with expanded events and greater participation from the tech community.",
     year: "2022",
     gradient: "linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent-bright) 100%)",
-    accentColor: "#2ec095",
+    accentColor: "#8e3795",
     icon: "target",
     position: "right",
     images: importCarnivalImages("2", 6),

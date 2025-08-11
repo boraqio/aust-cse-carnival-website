@@ -33,9 +33,7 @@ function HeroSection() {
             AUST CSE Society is the host of CSE Carnival
           </h1>
           <p className={styles.heroDescription}>
-            Join us in celebrating technology and innovation at AUST CSE Carnival.
-            As a sponsor, you'll be part of an event that brings together the brightest
-            minds in computer science and engineering.
+              The AUST CSE Society is a central platform for fostering academic excellence, advancing technical skills, and strengthening community engagement within the CSE Department of Ahsanullah University of Science and Technology (AUST). Through seminars, workshops, competitions, and cultural programs, it provides diverse opportunities for students to learn, innovate, and collaborate. By facilitating connections with industry professionals and alumni, the society effectively bridges the gap between academic study and practical application.
           </p>
         </div>
         <div className={styles.heroLogo}>
@@ -103,6 +101,21 @@ function ItGraphicsPartnership() {
   );
 }
 
+function SegmentPartnership() {
+  return (
+    <section className={styles.segmentPartnership}>
+      <h2 className={styles.sectionTitle}>Segment Partnership</h2>
+        <img src={partner5} alt="Cyber Bangla" className={styles.CyberBanglaLogo} />
+      <p className={styles.ctaDescription}>
+          The threat is very real and the danger of being attacked is imminent. Cyber Bangla has been created with the sole purpose of warding off these threats and safeguarding the clients' data from such attacks whilst ensuring confidentiality, integrity and the availability of that data remains intact.
+      </p>
+      <Link to="https://cyberbangla.org/" className={styles.ctaButton}>
+        Cyber Bangla
+      </Link>
+    </section>
+  );
+}
+
 function TitleSponsorSection() {
   return (
     <section className={styles.titleSponsor}>
@@ -118,6 +131,10 @@ function TitleSponsorSection() {
             <br/><br/>
             Welcome to Havit Bangladesh. Our vision is Exploring innovative technology and providing smart, aesthetic and functional products to service users in Bangladesh. Applying innovative technology to empower everyone to become fun creators of a better life. Explore and Innovate; Strive and Undertake.
           </p>
+            <div style={{display: 'flex', gap: '1rem'}}>
+                <Link to="https://havit.com.bd/" className={styles.btnSecondary} >Havit BD</Link>
+                <Link to="https://havitsmart.com/" className={styles.btnSecondary}>Havit Smart</Link>
+            </div>
         </div>
       </div>
     </section>
@@ -147,9 +164,9 @@ export default function Sponsor() {
       <main className={styles.main}>
         <HeroSection />
         <SponsorsSection />
-        <ItGraphicsPartnership />
         <TitleSponsorSection />
-        <ContactCTA />
+          <ItGraphicsPartnership />
+        <SegmentPartnership />
       </main>
       <Footer />
     </div>

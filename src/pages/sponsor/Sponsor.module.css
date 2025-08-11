@@ -17,6 +17,33 @@
   align-items: center;
 }
 
+.btnSecondary {
+  background: var(--color-secondary-dark);
+  color: var(--color-accent-bright);
+  border-color: var(--color-accent-bright);
+  backdrop-filter: blur(10px);
+}
+
+.btnSecondary:hover {
+  background: var(--color-accent-bright);
+  color: var(--color-text-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-colored);
+}
+
+.btnPrimary,
+.btnSecondary,
+.btnOutline {
+  padding: 12px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: 2px solid transparent;
+  text-align: center;
+}
+
 .heroContent {
   max-width: 1200px;
   margin: 0 auto;
@@ -447,6 +474,25 @@
   filter: brightness(1.1) contrast(1.1);
 }
 
+.CyberBanglaLogo {
+  width: clamp(160px, 20vw, 300px);
+  height: auto;
+  max-height: 160px;
+  object-fit: contain;
+  margin: 0 auto var(--spacing-lg);
+  display: block;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  filter: brightness(0.95) contrast(1.05);
+  position: relative;
+  z-index: 1;
+}
+
+.CyberBanglaLogo:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.1);
+}
+
 .ctaHeading {
   font-size: var(--font-size-2xl);
   color: var(--color-accent-bright);
@@ -513,6 +559,45 @@
   transform: translateY(-1px);
 }
 
+/* Segment Partnership Section */
+.segmentPartnership {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.segmentPartnership::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.segmentPartnership .sectionTitle {
+  color: var(--color-accent-bright);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.segmentPartnership .ctaDescription {
+  color: var(--color-text-gray);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .heroContent,
@@ -541,6 +626,11 @@
   .boraqLogo {
     width: clamp(100px, 12vw, 160px);
     max-height: 100px;
+  }
+
+  .CyberBanglaLogo {
+    width: clamp(140px, 16vw, 200px);
+    max-height: 140px;
   }
 }
 
@@ -585,8 +675,12 @@
 
   /* Boraq logo adjustments for mobile landscape */
   .boraqLogo {
-    width: clamp(90px, 10vw, 140px);
-    max-height: 90px;
+    min-width: 150px;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .CyberBanglaLogo {
+    min-width: 200px;
     margin-bottom: var(--spacing-md);
   }
 }
@@ -638,6 +732,12 @@
   .boraqLogo {
     width: clamp(80px, 8vw, 120px);
     max-height: 80px;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .CyberBanglaLogo {
+    width: clamp(120px, 12vw, 160px);
+    max-height: 120px;
     margin-bottom: var(--spacing-sm);
   }
 
