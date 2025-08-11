@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
@@ -13,6 +13,78 @@ import heroImg3 from '../../assets/images/event page hero image gallery/carnival
 import heroImg4 from '../../assets/images/event page hero image gallery/carnival_5_img_32.jpg';
 import organizerLogo from '../../assets/images/organizer and co-organizer/organizer_operand.png';
 import coOrganizerLogo from '../../assets/images/organizer and co-organizer/co_organizer_perceptron.jpg';
+
+const faqs = [
+  {
+    id: 1,
+    question: "Who can participate in the carnival?",
+    answer: "This event is only for AUST students. Students from other universities are not eligible to participate."
+  },
+  {
+    id: 2,
+    question: "Is there any registration fee?",
+    answer: "Some segments have a registration fee, while others are completely free. Details will be mentioned for each segment during registration."
+  },
+  {
+    id: 3,
+    question: "What kind of segments will be there?",
+    answer: "The carnival will feature multiple exciting segments, including Programming Contests, Hackathons, UI/UX Competitions, Workshops, and more."
+  },
+  {
+    id: 4,
+    question: "How do I register for a segment?",
+    answer: "Registration links for each segment will be shared on the official AUST CSE Carnival 6.0 page along with guidelines."
+  },
+  {
+    id: 5,
+    question: "Can I participate in more than one segment?",
+    answer: "Yes! You can register for multiple segments as long as the schedules don’t clash."
+  },
+  {
+    id: 6,
+    question: "What do winners get?",
+    answer: "Winners will receive prize money, crests, and other exclusive benefits based on the segment they participate in."
+  }
+];
+
+function FAQSection() {
+  const [expandedId, setExpandedId] = useState(1);
+
+  const toggleFAQ = (id) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
+  return (
+      <section className={styles.faq}>
+        <div className={styles.faqHeader}>
+          <h2 className={styles.sectionTitle}>Frequently asked questions</h2>
+          <p className={styles.sectionSubtitle}>
+            Everything you need to know about the sponsorship and billing.
+          </p>
+        </div>
+        <div className={styles.faqList}>
+          {faqs.map(faq => (
+              <div
+                  key={faq.id}
+                  className={`${styles.faqItem} ${expandedId === faq.id ? styles.expanded : ''}`}
+              >
+                <button
+                    className={styles.faqQuestion}
+                    onClick={() => toggleFAQ(faq.id)}
+                    aria-expanded={expandedId === faq.id}
+                >
+                  {faq.question}
+                  <span className={styles.faqIcon}>{expandedId === faq.id ? '−' : '+'}</span>
+                </button>
+                <div className={styles.faqAnswer}>
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
+          ))}
+        </div>
+      </section>
+  );
+}
 
 const Home = () => {
   console.log('Home component rendering...'); // Debug log
@@ -159,6 +231,9 @@ const Home = () => {
       </section>
 
       {/* Use existing Footer component */}
+        <FAQSection />
+
+      {/* Footer Section */}
       <Footer />
     </div>
   );
