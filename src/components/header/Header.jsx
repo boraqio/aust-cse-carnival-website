@@ -104,8 +104,8 @@ export default function Header() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Link to="/contact" className={styles.ctaButton}>
-            Register Now
+          <Link to="#" className={styles.ctaButton}>
+            Watch Promo Video
           </Link>
         </motion.div>
 
@@ -160,11 +160,11 @@ export default function Header() {
                   className={styles.mobileCta}
                 >
                   <Link
-                    to="/contact"
+                    to="#"
                     className={styles.mobileCtaButton}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Register Now
+                    Watch Promo Video
                   </Link>
                 </motion.div>
               </div>
