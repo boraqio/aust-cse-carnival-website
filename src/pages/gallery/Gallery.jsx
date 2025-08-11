@@ -4,15 +4,15 @@ import Footer from '../../components/footer/Footer';
 import Icon from '../../components/common/Icon';
 import styles from './Gallery.module.css';
 
-// Import carnival images with proper error handling and correct paths
+// Import carnival images with proper paths for production
 const importCarnivalImages = (carnivalVersion, count) => {
   const images = [];
   for (let i = 1; i <= count; i++) {
     images.push({
-      src: `/src/assets/images/carnivals/Carnival ${carnivalVersion}.0/carnival_${carnivalVersion}_img_${i}.jpg`,
+      src: `/images/carnivals/Carnival ${carnivalVersion}.0/carnival_${carnivalVersion}_img_${i}.jpg`,
       alt: `AUST CSE Carnival ${carnivalVersion}.0 - Memory ${i}`,
       id: `carnival_${carnivalVersion}_${i}`,
-      thumbnail: `/src/assets/images/carnivals/Carnival ${carnivalVersion}.0/carnival_${carnivalVersion}_img_${i}.jpg`
+      thumbnail: `/images/carnivals/Carnival ${carnivalVersion}.0/carnival_${carnivalVersion}_img_${i}.jpg`
     });
   }
   return images;
