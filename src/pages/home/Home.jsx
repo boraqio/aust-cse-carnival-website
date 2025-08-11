@@ -7,10 +7,10 @@ import styles from './Home.module.css';
 
 // Import images properly for Vite
 import titleSponsor from '../../assets/images/title_sponsor.jpg';
-import heroImg1 from '../../assets/images/event page hero image gallery/carnival_1_img_13.jpg';
-import heroImg2 from '../../assets/images/event page hero image gallery/carnival_2_img_2.jpg';
-import heroImg3 from '../../assets/images/event page hero image gallery/carnival_3_img_17.jpg';
-import heroImg4 from '../../assets/images/event page hero image gallery/carnival_5_img_32.jpg';
+import heroImg1 from '../../../public/images/home_hero/home_hero_image1.png';
+import heroImg2 from '../../../public/images/home_hero/home_hero_image2.png';
+import heroImg3 from '../../../public/images/home_hero/home_hero_image3.png';
+import heroImg4 from '../../../public/images/home_hero/home_hero_image4.png';
 import organizerLogo from '../../assets/images/organizer and supporter/organizer_cse_society.png';
 import SupporoterLogo from '../../assets/images/organizer and supporter/supporter_operand.png';
 import coSupporoterLogo from '../../assets/images/organizer and supporter/co_supporter_perceptron.jpg';
@@ -113,10 +113,10 @@ const Home = () => {
 
           <div className={styles.heroImageSection}>
             <div className={styles.heroImageGrid}>
-              <img src={heroImg1} alt="Carnival Event 1" className={styles.heroImg} />
-              <img src={heroImg2} alt="Carnival Event 2" className={styles.heroImg} />
-              <img src={heroImg3} alt="Carnival Event 3" className={styles.heroImg} />
-              <img src={heroImg4} alt="Carnival Event 4" className={styles.heroImg} />
+              <img src={heroImg1} alt="Hero Image 1" className={styles.heroImg} />
+              <img src={heroImg2} alt="Hero Image 2" className={styles.heroImg} />
+              <img src={heroImg3} alt="Hero Image 3" className={styles.heroImg} />
+              <img src={heroImg4} alt="Hero Image 4" className={styles.heroImg} />
             </div>
           </div>
         </div>
