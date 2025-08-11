@@ -18,7 +18,7 @@ const importCarnivalImages = (carnivalVersion, count) => {
   return images;
 };
 
-// Enhanced carnival data with comprehensive information
+// Enhanced carnival data with comprehensive information.
 const carnivalData = {
   "1.0": {
     title: "Integer 43",
