@@ -84,10 +84,10 @@ function SponsorsSection() {
           </div>
         </div>
 
-        <div className={styles.sponsorshipCTA}>
+        <div className={styles.ItGraphicsPartnershipButton}>
           <img src={partner3} alt="Boraq Logo" className={styles.boraqLogo} />
           <p className={styles.ctaDescription}>
-            Join our community of forward-thinking organizations supporting the next generation of tech innovators
+            Boraq combines advanced technologies and modern solutions to streamline operations and enhance user experiences. We deliver innovative services that foster growth and digital transformation.
           </p>
           <button className={styles.partnershipButton}>
             Visit Boraq

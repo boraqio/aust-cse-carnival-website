@@ -407,7 +407,7 @@
 }
 
 /* Sponsorship CTA Section */
-.sponsorshipCTA {
+.ItGraphicsPartnershipButton {
   text-align: center;
   padding: var(--spacing-2xl);
   background: var(--color-primary-dark);
@@ -417,7 +417,7 @@
   overflow: hidden;
 }
 
-.sponsorshipCTA::before {
+.ItGraphicsPartnershipButton::before {
   content: '';
   position: absolute;
   top: 0;
@@ -583,7 +583,7 @@
     animation-duration: 20s;
   }
 
-  .sponsorshipCTA {
+  .ItGraphicsPartnershipButton {
     padding: var(--spacing-xl);
     margin: 0 var(--spacing-md);
   }
